@@ -32,15 +32,21 @@ const langkahs = [
         {langkahs.map((step, index) => {
           const IconComponent = step.icon;
           const isEven = index % 2 === 0;
+          const isFirst = index === 0; // Deteksi langkah pertama
 
           return (
             <div class={`flex flex-col md:flex-row items-start md:items-center w-full ${isEven ? 'md:flex-row-reverse' : ''}`}>
               
               <div class="w-full md:w-1/2 hidden md:block"></div>
 
+              {/* PERBAIKAN: Jika langkah pertama, langsung berikan style aktif border-accent bg-accent text-primary */}
               <button
                 data-target={step.id}
-                class="workflow-btn absolute left-4 md:left-1/2 w-9 h-9 rounded-full border-2 bg-primary border-white/30 text-white flex items-center justify-center -translate-x-1/2 z-20 shadow-lg transition-all duration-300 hover:border-accent cursor-pointer focus:outline-none"
+                class={`workflow-btn absolute left-4 md:left-1/2 w-9 h-9 rounded-full border-2 text-white flex items-center justify-center -translate-x-1/2 z-20 shadow-lg transition-all duration-300 hover:border-accent cursor-pointer focus:outline-none ${
+                  isFirst 
+                    ? 'border-accent bg-accent text-primary' 
+                    : 'bg-primary border-white/30 text-white'
+                }`}
               >
                 <IconComponent class="w-4 h-4 stroke-[2]" />
               </button>
@@ -53,18 +59,25 @@ const langkahs = [
                     class="workflow-title-trigger text-left md:inline-block focus:outline-none cursor-pointer group"
                   >
                     <div class={`flex items-center gap-2 ${isEven ? 'md:flex-row-reverse' : ''}`}>
-                      <span class="workflow-num text-xs font-black text-white/40 group-hover:text-accent transition-colors">
+                      {/* PERBAIKAN: Berikan warna text-accent pada nomor pertama secara default */}
+                      <span class={`workflow-num text-xs font-black transition-colors group-hover:text-accent ${isFirst ? 'text-accent' : 'text-white/40'}`}>
                         0{index + 1}.
                       </span>
-                      <h4 class="font-bold text-white/60 group-hover:text-white text-base md:text-xl tracking-tight transition-colors workflow-h4">
+                      {/* PERBAIKAN: Berikan warna text-accent pada judul pertama secara default */}
+                      <h4 class={`font-bold text-base md:text-xl tracking-tight transition-colors workflow-h4 group-hover:text-white ${isFirst ? 'text-accent' : 'text-white/60'}`}>
                         {step.title}
                       </h4>
                     </div>
                   </button>
 
+                  {/* PERBAIKAN: Panel deskripsi pertama langsung diset terbuka (max-h-24 opacity-100) */}
                   <div 
                     id={`content-${step.id}`} 
-                    class="workflow-desc-panel max-h-0 opacity-0 overflow-hidden transition-all duration-300 ease-in-out"
+                    class={`workflow-desc-panel overflow-hidden transition-all duration-300 ease-in-out ${
+                      isFirst 
+                        ? 'max-h-24 opacity-100' 
+                        : 'max-h-0 opacity-0'
+                    }`}
                   >
                     <p class="text-sm text-white/90 leading-relaxed mt-2 max-w-xl md:inline-block font-normal">
                       {step.desc}

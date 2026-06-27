@@ -5,7 +5,7 @@ import { MapPin, MessageCircle, Mail, Facebook, Instagram } from 'lucide-astro';
 const currentYear = new Date().getFullYear();
 
 const menuTentang = [
-  { name: 'Profil Perusahaan', href: '/#tentang' },
+  { name: 'Profil Kami', href: '/#tentang' },
   { name: 'Visi & Misi', href: '/#tentang' },
   { name: 'Komitmen K3', href: '/#tentang' },
 ];
@@ -50,7 +50,7 @@ const waLink = `https://wa.me/${waNumber}?text=Halo%20Bregas%20Elektrik,%20saya%
     </div>
 
     <div>
-      <h3 class="text-xs font-bold tracking-widest uppercase text-accent mb-4">Perusahaan</h3>
+      <h3 class="text-xs font-bold tracking-widest uppercase text-accent mb-4">Tentang Kami</h3>
       <ul class="space-y-3">
         {menuTentang.map(item => (
           <li>
