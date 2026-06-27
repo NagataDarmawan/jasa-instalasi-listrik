@@ -1,68 +1,50 @@
 ---
 import Footer from '../components/Footer.astro';
 import FormPemesanan from '../components/formPemesanan.astro'; // Mengimpor form Anda sebagai pop-up
-import { ImageOff, ArrowRight } from 'lucide-astro';
+import { ImageOff, ArrowRight, ArrowLeft } from 'lucide-astro';
 import '../styles/global.css';
 
 const layananList = [
   {
     id: "instalasi-listrik-rumah",
     title: "Instalasi Listrik Rumah",
-    description: "Pemasangan jalur kabel baru, titik lampu, dan stop kontak untuk hunian tinggal yang aman dan rapi.",
+    description: "Perancangan dan pemasangan kelistrikan hunian baru maupun renovasi. Cakupan tindakan: Instalasi baru, Renovasi instalasi keseluruhan, dan Penambahan titik lampu.",
     img: "/img/layanan-rumah.jpg"
   },
   {
     id: "instalasi-listrik-ruko",
-    title: "Instalasi Listrik Ruko",
-    description: "Sistem kelistrikan komersial untuk ruko guna mendukung operasional bisnis dan pencahayaan display.",
+    title: "Instalasi Listrik Ruko & Toko",
+    description: "Integrasi sistem arus komersial pembagian beban aman untuk operasional tempat usaha Anda, meliputi: Ruko, Toko, Kafe kecil, dan Tempat usaha.",
     img: "/img/layanan-ruko.jpg"
   },
   {
-    id: "instalasi-kantor",
-    title: "Instalasi Kantor",
-    description: "Penyusunan kabel data, stop kontak meja kerja, dan sistem kelistrikan ruang kerja yang minim gangguan.",
-    img: "/img/layanan-kantor.jpg"
-  },
-  {
-    id: "instalasi-gudang",
-    title: "Instalasi Gudang",
-    description: "Pemasangan lampu high-bay berkapasitas besar dan sistem kelistrikan area logistik yang andal.",
-    img: "/img/layanan-gudang.jpg"
-  },
-  {
-    id: "instalasi-pabrik-ringan",
-    title: "Instalasi Pabrik Ringan",
-    description: "Penyediaan suplai daya untuk mesin-mesin industri ringan dan jalur produksi skala menengah.",
-    img: "/img/layanan-pabrik.jpg"
-  },
-  {
     id: "penambahan-daya",
-    title: "Penambahan Daya",
-    description: "Pengurusan dan instalasi pendukung untuk menaikkan daya PLN agar tidak sering turun/jeglek.",
+    title: "Penambahan Daya Listrik",
+    description: "Solusi peningkatan pasokan kapasitas energi PLN tanpa kendala interupsi operasional, meliputi: Persiapan instalasi dan Penyesuaian instalasi setelah daya bertambah.",
     img: "/img/layanan-daya.jpg"
   },
   {
     id: "pemasangan-mcb",
-    title: "Pemasangan MCB",
-    description: "Penggantian dan pemasangan MCB baru untuk membagi beban arus listrik yang lebih aman.",
+    title: "Pemasangan & Penggantian MCB",
+    description: "Peremajaan sistem proteksi beban berlebih untuk menekan risiko kebakaran kebakaran korsleting, melayani pemasangan: MCB utama, MCB cabang, hingga penggantian Box MCB.",
     img: "/img/layanan-mcb.jpg"
   },
   {
-    id: "instalasi-panel-listrik",
-    title: "Instalasi Panel Listrik",
-    description: "Perakitan dan penataan panel pembagi (SDP) maupun panel utama (MDP) dengan standar K3.",
-    img: "/img/layanan-panel.jpg"
-  },
-  {
     id: "perbaikan-instalasi",
-    title: "Perbaikan Instalasi",
-    description: "Pencarian korsleting (troubleshooting), perbaikan kabel rapuh, dan peremajaan sistem listrik.",
+    title: "Perbaikan Instalasi Listrik",
+    description: "Layanan penanganan darurat penelusuran gangguan kelistrikan, mendeteksi kerusakan akibat: Korsleting, Stop kontak rusak, Saklar rusak, Lampu mati, dan Kabel putus.",
     img: "/img/layanan-perbaikan.jpg"
   },
   {
-    id: "maintenance-listrik-berkala",
-    title: "Maintenance Listrik Berkala",
-    description: "Inspeksi rutin, pengecekan tahanan isolasi, dan pembersihan komponen untuk mencegah kebakaran.",
+    id: "pemasangan-lampu-stop-kontak",
+    title: "Pemasangan Lampu & Stop Kontak",
+    description: "Ekstensi fungsionalitas titik daya dan estetika pencahayaan properti Anda, mencakup penempatan: Lampu indoor, Lampu outdoor, Lampu taman, dan penambahan unit Stop kontak.",
+    img: "/img/layanan-kantor.jpg"
+  },
+  {
+    id: "pengecekan-perawatan-instalasi",
+    title: "Pengecekan & Perawatan Instalasi",
+    description: "Tindakan preventif berkala untuk memantau kelayakan sirkuit bangunan melalui prosedur standar Pemeriksaan instalasi kelistrikan secara menyeluruh.",
     img: "/img/layanan-maintenance.jpg"
   }
 ];
@@ -78,6 +60,17 @@ const layananList = [
 <body class="bg-background text-text-main flex flex-col min-h-screen relative">
 
   <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-24">
+    
+    <div class="mb-8">
+      <a 
+        href="/#layanan" 
+        class="inline-flex items-center gap-2 text-sm font-semibold text-text-light hover:text-accent transition-colors group"
+      >
+        <ArrowLeft class="w-4 h-4 transition-transform group-hover:-translate-x-0.5" /> 
+        Kembali ke Layanan
+      </a>
+    </div>
+
     <div class="mb-16">
       <h2 class="text-xs font-bold tracking-wider uppercase text-accent mb-2">Layanan Kami</h2>
       <h1 class="text-3xl font-extrabold text-primary">Solusi Teknisi Listrik Profesional</h1>
@@ -104,12 +97,11 @@ const layananList = [
 
             <div class="p-6">
               <h3 class="text-lg font-bold text-primary mb-2 transition-colors group-hover:text-secondary">{layanan.title}</h3>
-              <p class="text-text-light text-sm leading-relaxed line-clamp-3">{layanan.description}</p>
+              <p class="text-text-light text-sm leading-relaxed">{layanan.description}</p>
             </div>
           </div>
 
           <div class="px-6 pb-6 pt-2">
-            {/* DIUBAH: Menggunakan tag button dengan atribut data-slug agar memicu script pop-up */}
             <button 
               data-open-modal
               data-slug={layanan.id}
@@ -145,30 +137,29 @@ const layananList = [
     const closeBtn = document.getElementById('close-modal-btn');
     const closeBg = document.getElementById('close-modal-bg');
 
-    // Ambil elemen select dan input hidden dari komponen form Anda
+    // Catatan: Pastikan di dalam `<FormPemesanan />` Anda memiliki ID elemen berikut agar sinkron otomatis
     const selectElement = document.getElementById('client-service') as HTMLSelectElement;
     const hiddenInputElement = document.getElementById('hidden-client-service') as HTMLInputElement;
 
-    // Fungsi membuka pop-up dan mensimulasikan auto-select slug layanan
     openButtons.forEach(button => {
       button.addEventListener('click', () => {
         const slug = button.getAttribute('data-slug');
         
-        if (slug && selectElement && hiddenInputElement) {
+        if (slug && selectElement) {
           selectElement.value = slug;
+        }
+        if (slug && hiddenInputElement) {
           hiddenInputElement.value = slug;
         }
 
-        // Tampilkan modal pop-up ke tengah layar
         modal?.classList.remove('hidden');
-        document.body.style.overflow = 'hidden'; // Kunci scroll halaman utama saat pop-up aktif
+        document.body.style.overflow = 'hidden'; 
       });
     });
 
-    // Fungsi menutup pop-up
     function closeModal() {
       modal?.classList.add('hidden');
-      document.body.style.overflow = ''; // Aktifkan kembali scroll halaman utama
+      document.body.style.overflow = ''; 
     }
 
     closeBtn?.addEventListener('click', closeModal);

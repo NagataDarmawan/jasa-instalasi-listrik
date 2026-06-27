@@ -1,25 +1,36 @@
 ---
 // src/components/SemuaProyek.astro
-import { Building2, Calendar, CheckCircle2, ImageOff } from 'lucide-astro';
+import { Building2, Calendar, CheckCircle2, ImageOff, ArrowLeft } from 'lucide-astro';
+import Footer from '../components/Footer.astro'; // Mengimpor komponen Footer
 import '../styles/global.css';
 
 const allProjects = [
-  { title: "Instalasi Gedung Perkantoran Sudirman", category: "Gedung", year: "2026", img: "/img/proyek-1.jpg" },
-  { title: "Sistem Panel PDB Pabrik Tekstil", category: "Industri", year: "2026", img: "/img/proyek-2.jpg" },
-  { title: "Maintenance Gardu Listrik Mall Tegal", category: "Maintenance", year: "2025", img: "/img/proyek-3.jpg" },
-  { title: "Instalasi Ruko 3 Lantai Brebes", category: "Komersial", year: "2025", img: "/img/proyek-4.jpg" },
-  { title: "Smart Home Luxury Residence", category: "Residensial", year: "2025", img: "/img/proyek-5.jpg" },
-  { title: "Upgrade Daya Pabrik Konveksi", category: "Industri", year: "2024", img: "/img/proyek-6.jpg" },
-  { title: "Penerangan Gudang Logistik Utama", category: "Logistik", year: "2024", img: "/img/proyek-7.jpg" },
-  { title: "Perbaikan Jaringan Listrik RSUD", category: "Fasilitas Publik", year: "2024", img: "/img/proyek-8.jpg" },
-  { title: "Instalasi Listrik Komplek Perumahan", category: "Residensial", year: "2023", img: "/img/proyek-9.jpg" },
-  { title: "Panel Distribusi Workshop SMK", category: "Edukasi", year: "2023", img: "/img/proyek-10.jpg" },
+  { title: "Instalasi Baru Rumah Tinggal Minimalis Cluster Tegal", category: "Instalasi Listrik Rumah", year: "2026", img: "/img/proyek-1.jpg" },
+  { title: "Sistem Kelistrikan & Penerangan Kafe Kopi Brebes", category: "Instalasi Ruko & Toko", year: "2026", img: "/img/proyek-2.jpg" },
+  { title: "Upgrade Kapasitas Daya PLN & Penggantian Kabel Utama Toko", category: "Penambahan Daya Listrik", year: "2026", img: "/img/proyek-3.jpg" },
+  { title: "Peremajaan MCB Cabang & Box Distribusi Rumah Makan", category: "Pemasangan & Penggantian MCB", year: "2025", img: "/img/proyek-4.jpg" },
+  { title: "Penanganan Urgen Gangguan Korsleting Jalur Dinding Rumah", category: "Perbaikan Instalasi Listrik", year: "2025", img: "/img/proyek-5.jpg" },
+  { title: "Pemasangan Lampu Gantung Indoor & Sorot Taman Residensial", category: "Pemasangan Lampu & Stop Kontak", year: "2025", img: "/img/proyek-6.jpg" },
+  { title: "Pemeriksaan Kelayakan Isolasi & Standarisasi PUIL Gedung Usaha", category: "Pengecekan & Perawatan Instalasi", year: "2024", img: "/img/proyek-7.jpg" },
+  { title: "Renovasi Jalur Kabel & Penambahan Titik Lampu Ruko Slawi", category: "Instalasi Listrik Rumah", year: "2024", img: "/img/proyek-8.jpg" },
+  { title: "Instalasi Tambahan Stop Kontak & Saklar Area Tempat Usaha", category: "Pemasangan Lampu & Stop Kontak", year: "2024", img: "/img/proyek-9.jpg" },
+  { title: "Troubleshooting Saklar Rusak & Lampu Mati Massal Kompleks Toko", category: "Perbaikan Instalasi Listrik", year: "2023", img: "/img/proyek-10.jpg" },
 ];
 ---
 
-<section id="semua-proyek" class="py-24 bg-background">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<section id="semua-proyek" class="py-24 bg-background flex flex-col min-h-screen justify-between">
+  <div class="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 mb-auto">
     
+    <div class="mb-8 text-left">
+      <a 
+        href="#portfolio" 
+        class="inline-flex items-center gap-2 text-sm font-semibold text-text-light hover:text-accent transition-colors group"
+      >
+        <ArrowLeft class="w-4 h-4 transition-transform group-hover:-translate-x-0.5" /> 
+        Kembali ke Proyek
+      </a>
+    </div>
+
     <div class="mb-16 text-center">
       <h2 class="text-xs font-bold tracking-wider uppercase text-accent mb-2">Portfolio Lengkap</h2>
       <p class="text-3xl md:text-4xl font-extrabold text-primary">Daftar Proyek Kami</p>
@@ -30,15 +41,12 @@ const allProjects = [
       {allProjects.map((project) => (
         <div class="bg-surface border border-border-custom rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all group">
           
-          <!-- Area Gambar dengan Pratinjau -->
           <div class="h-40 bg-slate-100 relative overflow-hidden flex flex-col items-center justify-center">
-            <!-- Ikon Pratinjau -->
             <div class="absolute inset-0 flex flex-col items-center justify-center text-slate-400 group-hover:text-accent transition-colors">
               <ImageOff class="w-8 h-8 stroke-[1.5]" />
               <span class="text-[10px] uppercase tracking-widest font-semibold mt-1 opacity-60">Pratinjau</span>
             </div>
 
-            <!-- Gambar Asli -->
             <img 
               src={project.img} 
               alt={project.title}
@@ -70,5 +78,9 @@ const allProjects = [
         </div>
       ))}
     </div>
+  </div>
+
+  <div class="w-full mt-24">
+    <Footer />
   </div>
 </section>

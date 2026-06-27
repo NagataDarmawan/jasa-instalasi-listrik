@@ -1,0 +1,102 @@
+---
+// src/pages/kebijakan-privasi.astro
+import '../styles/global.css';
+import Footer from '../components/Footer.astro';
+import WhatsappCTA from '../components/WhatsappCTA.astro';
+---
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kebijakan Privasi - BREGAS ELEKTRIK</title>
+</head>
+<body class="bg-background text-primary min-h-screen flex flex-col font-sans">
+
+  <!-- Main Content -->
+  <main class="flex-grow w-full max-w-4xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+    <div class="bg-surface p-6 sm:p-10 rounded-2xl border border-border-custom/50 shadow-xs">
+      
+      <!-- Header Dokumen -->
+      <div class="border-b border-border-custom pb-6 mb-8">
+        <h1 class="text-2xl sm:text-3xl font-black tracking-tight text-primary mb-2">Kebijakan Privasi</h1>
+        <p class="text-xs sm:text-sm text-text-light font-medium">Terakhir Diperbarui: Juni 2026</p>
+      </div>
+
+      <!-- Isi Dokumen -->
+      <div class="space-y-6 text-sm sm:text-base leading-relaxed text-primary/90 font-medium">
+        <p>
+          Di <strong class="font-bold text-primary">BREGAS ELEKTRIK</strong>, privasi pengunjung dan pelanggan kami adalah prioritas utama. Dokumen Kebijakan Privasi ini menjelaskan jenis informasi pribadi yang kami kumpulkan melalui situs web kami dan bagaimana kami mengelola, menggunakan, serta melindungi informasi tersebut.
+        </p>
+
+        <section class="space-y-2">
+          <h2 class="text-lg font-black text-primary tracking-tight">1. Informasi yang Kami Kumpulkan</h2>
+          <p class="text-text-light">
+            Saat Anda mengisi formulir pemesanan jasa atau menghubungi kami melalui WhatsApp, kami mengumpulkan informasi identitas pribadi yang Anda berikan secara sukarela, meliputi:
+          </p>
+          <ul class="list-disc pl-5 space-y-1.5 text-text-light">
+            <li>Nama Lengkap</li>
+            <li>Nomor Handphone / WhatsApp</li>
+            <li>Alamat Lengkap Lokasi Proyek/Rumah</li>
+            <li>Catatan Teknis atau Keterangan Tambahan terkait kendala listrik Anda</li>
+          </ul>
+        </section>
+
+        <section class="space-y-2">
+          <h2 class="text-lg font-black text-primary tracking-tight">2. Penggunaan Informasi</h2>
+          <p class="text-text-light">
+            Informasi yang Anda berikan digunakan secara ketat untuk kepentingan operasional dan peningkatan layanan, antara lain untuk:
+          </p>
+          <ul class="list-disc pl-5 space-y-1.5 text-text-light">
+            <li>Memproses pesanan jasa dan mengatur jadwal kunjungan tim teknisi ke lokasi Anda.</li>
+            <li>Menghubungi Anda kembali guna melakukan konfirmasi, koordinasi teknis, atau menindaklanjuti keluhan pasca-layanan (garansi).</li>
+            <li>Menyusun dokumentasi internal serta penagihan (invoice) resmi.</li>
+          </ul>
+        </section>
+
+        <section class="space-y-2">
+          <h2 class="text-lg font-black text-primary tracking-tight">3. Perlindungan & Keamanan Data</h2>
+          <p class="text-text-light">
+            Kami menerapkan standar keamanan digital untuk melindungi data pribadi Anda dari akses tanpa izin, perubahan, pengungkapan, atau penghancuran yang tidak sah. Data Anda tidak akan pernah dijual, disewakan, atau disebarluaskan kepada pihak ketiga untuk kepentingan komersial atau periklanan di luar ekosistem layanan BREGAS ELEKTRIK.
+          </p>
+        </section>
+
+        <section class="space-y-2">
+          <h2 class="text-lg font-black text-primary tracking-tight">4. Berbagi Data dengan Pihak Ketiga</h2>
+          <p class="text-text-light">
+            Kami hanya akan membagikan data alamat dan nomor kontak Anda kepada tim teknisi resmi lapangan kami yang ditugaskan untuk menangani proyek Anda. Data juga dapat diungkapkan apabila diwajibkan oleh hukum atau instruksi resmi dari otoritas penegak hukum yang sah.
+          </p>
+        </section>
+
+        <section class="space-y-2">
+          <h2 class="text-lg font-black text-primary tracking-tight">5. Hak Akses dan Pembaruan Data</h2>
+          <p class="text-text-light">
+            Pelanggan memiliki hak penuh untuk menanyakan, memperbarui, atau meminta penghapusan data pribadi mereka dari sistem database operasional kami kapan saja dengan menghubungi kami melalui kontak resmi yang tersedia di situs web ini.
+          </p>
+        </section>
+
+        <section class="space-y-2">
+          <h2 class="text-lg font-black text-primary tracking-tight">6. Perubahan Kebijakan Privasi</h2>
+          <p class="text-text-light">
+            BREGAS ELEKTRIK berhak memperbarui Kebijakan Privasi ini sewaktu-waktu seiring dengan perkembangan layanan atau regulasi hukum yang berlaku. Perubahan akan langsung efektif setelah dipublikasikan pada halaman situs web ini.
+          </p>
+        </section>
+      </div>
+
+      <!-- Tombol Kembali -->
+      <div class="mt-8 pt-6 border-t border-border-custom flex justify-start">
+        <a href="/" class="text-sm font-bold text-accent hover:underline flex items-center gap-1">
+          ← Kembali ke Beranda
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Import Footer -->
+  <Footer />
+
+  <WhatsappCTA />
+</body>
+</html>

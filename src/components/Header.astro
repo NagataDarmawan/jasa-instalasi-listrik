@@ -8,7 +8,7 @@ const navItems = [
   { name: 'Beranda', href: '#' },
   { name: 'Tentang', href: '#tentang' },
   { name: 'Layanan', href: '/#layanan' },
-  { name: 'Portfolio', href: '/#portfolio' }, // Sinkron menggunakan ID lokal halaman utama
+  { name: 'Portfolio', href: '/#portfolio' }, 
   { name: 'FAQ', href: '/#faq' },
   { name: 'Kontak', href: '/#kontak' },
 ];
@@ -39,7 +39,7 @@ const catalogLink = "/catalogLayanan";
               href={item.href} 
               class={`nav-link text-sm font-semibold tracking-wide transition-colors duration-200 ${
                 isActive 
-                  ? 'text-white border-b-2 border-white pb-1' 
+                  ? 'text-accent border-b-2 border-accent pb-1' 
                   : 'text-accent hover:text-white'
               }`}
             >
@@ -60,16 +60,17 @@ const catalogLink = "/catalogLayanan";
       </div>
 
       <div class="flex md:hidden">
+        {/* PERBAIKAN: Mengubah hover:text-white menjadi hover:text-accent */}
         <button 
           id="menu-btn"
           type="button" 
-          class="text-accent hover:text-white focus:outline-none p-2 rounded-md transition-colors duration-300 flex items-center justify-center"
+          class="text-accent hover:text-accent focus:outline-none p-2 rounded-md transition-colors duration-300 flex items-center justify-center"
           aria-label="Toggle Menu"
         >
           <div id="hamburger-icon" class="block">
             <Menu class="w-6 h-6" />
           </div>
-          <div id="close-icon" class="hidden">
+          <div id="close-icon" class="hidden text-accent">
             <X class="w-6 h-6" />
           </div>
         </button>
@@ -78,33 +79,38 @@ const catalogLink = "/catalogLayanan";
     </div>
   </div>
 
-  <div id="mobile-menu" class="hidden md:hidden bg-surface/95 backdrop-blur-lg border-b border-border-custom/50 absolute w-full left-0 shadow-lg">
-    <div class="px-4 pt-2 pb-6 space-y-3">
-      {navItems.map(item => {
-        const isActive = item.href === '#' 
-          ? currentPath === '/' 
-          : currentPath === item.href || (item.href !== '/' && !item.href.startsWith('#') && currentPath.startsWith(item.href));
-        return (
+  <div class="px-4 w-full absolute left-0">
+    <div 
+      id="mobile-menu" 
+      class="hidden bg-white border border-slate-100 rounded-2xl shadow-xl mt-2 transition-all duration-300"
+    >
+      <div class="px-4 pt-4 pb-6 space-y-2">
+        {navItems.map(item => {
+          const isActive = item.href === '#' 
+            ? currentPath === '/' 
+            : currentPath === item.href || (item.href !== '/' && !item.href.startsWith('#') && currentPath.startsWith(item.href));
+          return (
+            <a 
+              href={item.href} 
+              class={`block px-4 py-3 rounded-xl text-base font-medium transition-colors ${
+                isActive 
+                  ? 'bg-accent/10 text-accent font-bold' 
+                  : 'text-slate-700 hover:bg-slate-50 hover:text-accent'
+              }`}
+            >
+              {item.name}
+            </a>
+          )
+        })}
+        
+        <div class="pt-4 border-t border-slate-100 px-2">
           <a 
-            href={item.href} 
-            class={`block px-3 py-2.5 rounded-md text-base font-medium transition-colors ${
-              isActive 
-                ? 'bg-primary/5 text-accent font-bold' 
-                : 'text-text-main hover:bg-slate-50 hover:text-accent'
-            }`}
+            href={catalogLink} 
+            class="w-full text-center bg-accent hover:bg-accent/80 text-primary font-bold py-3 px-4 rounded-xl block text-sm shadow-sm transition-colors"
           >
-            {item.name}
+            Pesan Jasa
           </a>
-        )
-      })}
-      
-      <div class="pt-4 border-t border-border-custom/50 px-3">
-        <a 
-          href={catalogLink} 
-          class="w-full text-center bg-accent hover:bg-accent/80 text-primary font-bold py-3 px-4 rounded-lg block text-sm shadow-sm transition-colors"
-        >
-          Pesan Jasa
-        </a>
+        </div>
       </div>
     </div>
   </div>
@@ -129,19 +135,23 @@ const catalogLink = "/catalogLayanan";
       
       logoName?.classList.remove('text-accent');
       logoName?.classList.add('text-primary');
-      menuBtn?.classList.remove('text-accent');
-      menuBtn?.classList.add('text-primary');
+      
+      if (closeIcon?.classList.contains('hidden')) {
+        menuBtn?.classList.remove('text-accent');
+        menuBtn?.classList.add('text-primary');
+      }
     } else {
       header?.classList.add('bg-transparent', 'border-transparent');
       header?.classList.remove('bg-surface/70', 'backdrop-blur-md', 'border-border-custom/50', 'shadow-xs');
       
       logoName?.classList.remove('text-primary');
       logoName?.classList.add('text-accent');
+      
       menuBtn?.classList.remove('text-primary');
       menuBtn?.classList.add('text-accent');
     }
 
-    let currentActiveHref = '#';
+    let currentActiveHref = '#'; 
 
     if (scrollPosition > 50) {
       const sections = ['tentang', 'layanan', 'alurPengerjaan', 'portfolio', 'testimoni', 'faq', 'kontak'];
@@ -162,7 +172,6 @@ const catalogLink = "/catalogLayanan";
       } else if (activeSectionId === 'layanan' || activeSectionId === 'alurPengerjaan') {
         currentActiveHref = '/#layanan';
       } else if (activeSectionId === 'portfolio' || activeSectionId === 'testimoni') {
-        // PERBAIKAN: Disamakan menjadi '/#portfolio' agar cocok dengan data navItems di atas
         currentActiveHref = '/#portfolio'; 
       } else if (activeSectionId === 'faq') {
         currentActiveHref = '/#faq';
@@ -189,10 +198,22 @@ const catalogLink = "/catalogLayanan";
         }
       } else {
         if (isCurrentActive) {
-          link.classList.add('text-white', 'border-b-2', 'border-white');
+          link.classList.add('text-accent', 'border-b-2', 'border-accent');
         } else {
           link.classList.add('text-accent', 'hover:text-white');
         }
+      }
+    });
+
+    const mobileLinks = mobileMenu?.querySelectorAll('a:not([href="' + header?.querySelector('a[href*="catalog"]') + '"])');
+    mobileLinks?.forEach(link => {
+      const href = link.getAttribute('href');
+      if (href === currentActiveHref) {
+        link.classList.add('bg-accent/10', 'text-accent', 'font-bold');
+        link.classList.remove('text-slate-700', 'hover:bg-slate-50');
+      } else {
+        link.classList.remove('bg-accent/10', 'text-accent', 'font-bold');
+        link.classList.add('text-slate-700');
       }
     });
   };
@@ -208,9 +229,12 @@ const catalogLink = "/catalogLayanan";
         mobileMenu?.classList.add('hidden');
         hamburgerIcon?.classList.remove('hidden');
         closeIcon?.classList.add('hidden');
+        
         if (window.scrollY <= 20) {
-          header?.classList.remove('bg-surface');
+          header?.classList.remove('bg-surface/70', 'backdrop-blur-md');
           header?.classList.add('bg-transparent');
+          menuBtn?.classList.remove('text-primary');
+          menuBtn?.classList.add('text-accent');
         }
       }
     });
@@ -222,8 +246,17 @@ const catalogLink = "/catalogLayanan";
     closeIcon?.classList.toggle('hidden');
     
     if (window.scrollY <= 20) {
-      header?.classList.toggle('bg-surface');
+      header?.classList.toggle('bg-surface/70');
+      header?.classList.toggle('backdrop-blur-md');
       header?.classList.toggle('bg-transparent');
+    }
+
+    if (!closeIcon?.classList.contains('hidden')) {
+      menuBtn?.classList.remove('text-primary');
+      menuBtn?.classList.add('text-accent');
+    } else if (window.scrollY > 20) {
+      menuBtn?.classList.remove('text-accent');
+      menuBtn?.classList.add('text-primary');
     }
   });
 </script>

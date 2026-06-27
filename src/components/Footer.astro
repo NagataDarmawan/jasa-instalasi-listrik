@@ -10,16 +10,18 @@ const menuTentang = [
   { name: 'Komitmen K3', href: '/#tentang' },
 ];
 
+// DISESUAIKAN: Menyeleraskan 7 jenis layanan baru dan mengarahkannya murni ke id anchor #layanan
 const menuLayanan = [
-  { name: 'Instalasi Listrik Rumah & Ruko', href: '/detailLayanan?slug=instalasi-listrik-rumah' },
-  { name: 'Instalasi Kantor & Gudang', href: '/detailLayanan?slug=instalasi-kantor' },
-  { name: 'Instalasi Pabrik Ringan', href: '/detailLayanan?slug=instalasi-pabrik-ringan' },
-  { name: 'Penambahan Daya & MCB', href: '/detailLayanan?slug=penambahan-daya' },
-  { name: 'Instalasi Panel Listrik', href: '/detailLayanan?slug=instalasi-panel-listrik' },
-  { name: 'Perbaikan & Maintenance', href: '/detailLayanan?slug=perbaikan-instalasi' }
+  { name: 'Instalasi Listrik Rumah', href: '/#layanan' },
+  { name: 'Instalasi Listrik Ruko & Toko', href: '/#layanan' },
+  { name: 'Penambahan Daya Listrik', href: '/#layanan' },
+  { name: 'Pemasangan & Penggantian MCB', href: '/#layanan' },
+  { name: 'Perbaikan Instalasi Listrik', href: '/#layanan' },
+  { name: 'Pemasangan Lampu & Stop Kontak', href: '/#layanan' },
+  { name: 'Pengecekan & Perawatan Instalasi', href: '/#layanan' }
 ];
 
-const waNumber = "628123456789";
+const waNumber = "6285712425961";
 const waLink = `https://wa.me/${waNumber}?text=Halo%20Bregas%20Elektrik,%20saya%20ingin%20berkonsultasi%20mengenai%20layanan.`;
 ---
 
@@ -31,7 +33,7 @@ const waLink = `https://wa.me/${waNumber}?text=Halo%20Bregas%20Elektrik,%20saya%
         <span class="text-accent text-xl">⚡</span> BREGAS ELEKTRIK
       </a>
       <p class="text-text-light/80 text-xs sm:text-sm leading-relaxed font-normal text-left">
-        Penyedia jasa rekayasa instalasi kelistrikan profesional berstandar nasional PUIL & SNI. Kami mengedepankan aspek proteksi dini dan keselamatan kerja K3.
+        Penyedia jasa rekayasa instalasi kelistrikan profesional berstandar nasional PUIL (Persyaratan Umum Instalasi Listrik) & SNI. Kami mengedepankan aspek proteksi dini dan keselamatan kerja K3.
       </p>
       <div class="flex items-center gap-3.5 pt-2">
         <a href="#" class="p-2 bg-white/5 hover:bg-accent hover:text-primary rounded-xl transition-all duration-200 text-text-light" aria-label="Facebook">
@@ -39,6 +41,12 @@ const waLink = `https://wa.me/${waNumber}?text=Halo%20Bregas%20Elektrik,%20saya%
         </a>
         <a href="#" class="p-2 bg-white/5 hover:bg-accent hover:text-primary rounded-xl transition-all duration-200 text-text-light" aria-label="Instagram">
           <Instagram class="h-4 w-4" />
+        </a>
+        {/* TAMBAHAN: Ikon TikTok SVG Profesional diletakkan di sebelah kanan logo Instagram */}
+        <a href="#" class="p-2 bg-white/5 hover:bg-accent hover:text-primary rounded-xl transition-all duration-200 text-text-light flex items-center justify-center" aria-label="TikTok">
+          <svg class="h-4 w-4 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.03 1.6 4.17 1.22 1.32 2.94 2.05 4.72 2.18v3.91c-1.34-.17-2.65-.67-3.74-1.48-.96-.71-1.72-1.65-2.23-2.73v7.94c.05 1.56-.37 3.12-1.2 4.43-1.42 2.13-3.95 3.33-6.5 2.98-2.65-.4-4.88-2.31-5.58-4.89-.79-3 .83-6.19 3.73-7.22 1.03-.36 2.13-.41 3.19-.17v4.03c-.62-.19-1.29-.19-1.92-.02-1.24.32-2.16 1.4-2.29 2.67-.17 1.7 1.15 3.19 2.85 3.32 1.44.11 2.8-.75 3.25-2.11.13-.41.18-.84.17-1.28V0z"/>
+          </svg>
         </a>
       </div>
     </div>
@@ -57,7 +65,7 @@ const waLink = `https://wa.me/${waNumber}?text=Halo%20Bregas%20Elektrik,%20saya%
     </div>
 
     <div>
-      <h3 class="text-xs font-bold tracking-widest uppercase text-accent mb-4">Solusi Jasa</h3>
+      <h3 class="text-xs font-bold tracking-widest uppercase text-accent mb-4">Layanan</h3>
       <ul class="space-y-3">
         {menuLayanan.map(item => (
           <li>
@@ -79,7 +87,7 @@ const waLink = `https://wa.me/${waNumber}?text=Halo%20Bregas%20Elektrik,%20saya%
         <li class="flex items-center gap-3">
           <MessageCircle class="h-4 w-4 text-accent shrink-0" />
           <a href={waLink} target="_blank" rel="noopener noreferrer" class="hover:text-accent font-bold transition-colors">
-            +62 812-3456-789
+            +6285712425961
           </a>
         </li>
         <li class="flex items-center gap-3">
@@ -97,8 +105,8 @@ const waLink = `https://wa.me/${waNumber}?text=Halo%20Bregas%20Elektrik,%20saya%
       &copy; {currentYear} BREGAS ELEKTRIK. ALL RIGHTS RESERVED.
     </p>
     <div class="flex gap-6 text-[11px] font-bold uppercase tracking-wider text-text-light/60">
-      <a href="/kebijakan-privasi" class="hover:text-accent transition-colors">Kebijakan Privasi</a>
-      <a href="/syarat-ketentuan" class="hover:text-accent transition-colors">Syarat & Ketentuan</a>
+      <a href="/kebijakanPrivasi" class="hover:text-accent transition-colors">Kebijakan Privasi</a>
+      <a href="/syaratKetentuan" class="hover:text-accent transition-colors">Syarat & Ketentuan</a>
     </div>
   </div>
 </footer>

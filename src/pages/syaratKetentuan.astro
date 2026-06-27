@@ -1,0 +1,95 @@
+---
+// src/pages/syarat-ketentuan.astro
+import '../styles/global.css';
+import Footer from '../components/Footer.astro';
+import WhatsappCTA from '../components/WhatsappCTA.astro';
+---
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Syarat & Ketentuan - BREGAS ELEKTRIK</title>
+</head>
+<body class="bg-background text-primary min-h-screen flex flex-col font-sans">
+
+  <!-- Main Content -->
+  <main class="flex-grow w-full max-w-4xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+    <div class="bg-surface p-6 sm:p-10 rounded-2xl border border-border-custom/50 shadow-xs">
+      
+      <!-- Header Dokumen -->
+      <div class="border-b border-border-custom pb-6 mb-8">
+        <h1 class="text-2xl sm:text-3xl font-black tracking-tight text-primary mb-2">Syarat & Ketentuan</h1>
+        <p class="text-xs sm:text-sm text-text-light font-medium">Terakhir Diperbarui: Juni 2026</p>
+      </div>
+
+      <!-- Isi Dokumen -->
+      <div class="space-y-6 text-sm sm:text-base leading-relaxed text-primary/90 font-medium">
+        <p>
+          Selamat datang di <strong class="font-bold text-primary">BREGAS ELEKTRIK</strong>. Terima kasih telah memercayakan kebutuhan instalasi dan perawatan listrik Anda kepada kami. Syarat & Ketentuan ini mengatur penggunaan situs web kami serta penyediaan layanan jasa teknis yang kami tawarkan. Dengan mengakses situs ini atau memesan layanan kami, Anda dianggap telah membaca, memahami, dan menyetujui seluruh poin di bawah ini.
+        </p>
+
+        <section class="space-y-2">
+          <h2 class="text-lg font-black text-primary tracking-tight">1. Cakupan Layanan</h2>
+          <p class="text-text-light">
+            BREGAS ELEKTRIK menyediakan layanan teknis kelistrikan yang mencakup namun tidak terbatas pada: Instalasi Listrik Rumah/Ruko, Penambahan Daya, Pemasangan/Penggantian MCB, Perbaikan Instalasi, Pemasangan Lampu & Stop Kontak, serta Pengecekan & Perawatan Instalasi Berkala.
+          </p>
+        </section>
+
+        <section class="space-y-2">
+          <h2 class="text-lg font-black text-primary tracking-tight">2. Prosedur Pemesanan & Survei Lapangan</h2>
+          <ul class="list-disc pl-5 space-y-1.5 text-text-light">
+            <li>Pemesanan jasa resmi dilakukan melalui formulir situs web yang terintegrasi dengan sistem WhatsApp resmi kami.</li>
+            <li>Penetapan jadwal pengerjaan atau survei awal bersifat tentatif hingga tim administrasi kami memberikan konfirmasi langsung kepada pelanggan.</li>
+            <li>Pelanggan wajib memberikan data lokasi (alamat proyek) yang akurat dan memastikan akses ke lokasi pengerjaan aman serta tersedia saat teknisi tiba.</li>
+          </ul>
+        </section>
+
+        <section class="space-y-2">
+          <h2 class="text-lg font-black text-primary tracking-tight">3. Estimasi Biaya & Pembayaran</h2>
+          <ul class="list-disc pl-5 space-y-1.5 text-text-light">
+            <li>Estimasi awal biaya yang diberikan sebelum survei lapangan dapat berubah menyesuaikan dengan kondisi riil struktur bangunan, tingkat kesulitan, serta kebutuhan material tambahan di lokasi proyek.</li>
+            <li>Semua rincian biaya final akan dituangkan dalam penawaran atau invoice resmi.</li>
+            <li>Pembayaran dilakukan sesuai dengan metode yang disepakati (Cash on Delivery atau Transfer Bank Resmi) setelah pengerjaan selesai atau sesuai dengan termin pengerjaan yang disepakati untuk skala proyek tertentu.</li>
+          </ul>
+        </section>
+
+        <section class="space-y-2">
+          <h2 class="text-lg font-black text-primary tracking-tight">4. Pembatalan & Perubahan Jadwal</h2>
+          <p class="text-text-light">
+            Pelanggan berhak melakukan perubahan jadwal atau pembatalan pesanan selambat-lambatnya 24 jam sebelum waktu pengerjaan yang disepakati dengan menghubungi layanan pelanggan kami. Pembatalan sepihak saat teknisi sudah berada di lokasi dapat dikenakan biaya kompensasi operasional/survei.
+          </p>
+        </section>
+
+        <section class="space-y-2">
+          <h2 class="text-lg font-black text-primary tracking-tight">5. Garansi Pengerjaan</h2>
+          <p class="text-text-light">
+            Kami berkomitmen memberikan hasil kerja terbaik dengan standar keamanan tinggi. BREGAS ELEKTRIK memberikan garansi pengerjaan teknis yang durasinya disesuaikan dengan jenis layanan. Garansi ini otomatis batal apabila terdapat intervensi, modifikasi, atau perbaikan dari pihak ketiga/pihak lain di luar tim resmi BREGAS ELEKTRIK selama masa garansi berlangsung.
+          </p>
+        </section>
+
+        <section class="space-y-2">
+          <h2 class="text-lg font-black text-primary tracking-tight">6. Batasan Tanggung Jawab</h2>
+          <p class="text-text-light">
+            BREGAS ELEKTRIK tidak bertanggung jawab atas kerusakan atau gangguan listrik yang disebabkan oleh faktor eksternal di luar kendali teknis kami, seperti gangguan massal dari penyedia daya utama (PLN), bencana alam, korsleting akibat perangkat elektronik milik pelanggan yang rusak, atau kelalaian penggunaan oleh pihak pelanggan.
+          </p>
+        </section>
+      </div>
+
+      <!-- Tombol Kembali -->
+      <div class="mt-8 pt-6 border-t border-border-custom flex justify-start">
+        <a href="/" class="text-sm font-bold text-accent hover:underline flex items-center gap-1">
+          ← Kembali ke Beranda
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Import Footer -->
+  <Footer />
+
+  <WhatsappCTA />
+</body>
+</html>

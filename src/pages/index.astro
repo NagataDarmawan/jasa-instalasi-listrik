@@ -5,6 +5,7 @@
 import Layout from '../layouts/layout.astro'; 
 
 // 2. Import komponen seksi halaman utama dari folder COMPONENTS (Sudah Diperbaiki)
+
 import Hero from '../components/Hero.astro';
 import Layanan from '../pages/layanan.astro';
 import AlurPengerjaan from '../pages/alurPengerjaan.astro';
@@ -13,6 +14,7 @@ import Testimoni from '../pages/tesimoni.astro';
 import FAQ from '../pages/faq.astro';
 import Kontak from '../pages/kontak.astro'
 import Portofolio from './portofolio.astro';
+import WhatsappCTA from '../components/WhatsappCTA.astro';
 ---
 
 <Layout 
@@ -36,5 +38,7 @@ import Portofolio from './portofolio.astro';
   <FAQ />
 
   <Kontak />
+
+  <WhatsappCTA />
   
 </Layout>

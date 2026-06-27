@@ -3,18 +3,14 @@
 import { User, Phone, MapPin, Wrench, Calendar, FileText, Send } from 'lucide-astro';
 import '../styles/global.css';
 
-// Daftar opsi layanan yang disamakan persis nilainya dengan slug dari katalog
 const serviceOptions = [
   { slug: "instalasi-listrik-rumah", name: "Instalasi Listrik Rumah" },
-  { slug: "instalasi-listrik-ruko", name: "Instalasi Listrik Ruko" },
-  { slug: "instalasi-kantor", name: "Instalasi Kantor" },
-  { slug: "instalasi-gudang", name: "Instalasi Gudang" },
-  { slug: "instalasi-pabrik-ringan", name: "Instalasi Pabrik Ringan" },
-  { slug: "penambahan-daya", name: "Penambahan Daya" },
-  { slug: "pemasangan-mcb", name: "Pemasangan MCB" },
-  { slug: "instalasi-panel-listrik", name: "Instalasi Panel Listrik" },
-  { slug: "perbaikan-instalasi", name: "Perbaikan Instalasi" },
-  { slug: "maintenance-listrik-berkala", name: "Maintenance Listrik Berkala" }
+  { slug: "instalasi-listrik-ruko", name: "Instalasi Listrik Ruko & Toko" },
+  { slug: "penambahan-daya", name: "Penambahan Daya Listrik" },
+  { slug: "pemasangan-mcb", name: "Pemasangan & Penggantian MCB" },
+  { slug: "perbaikan-instalasi", name: "Perbaikan Instalasi Listrik" },
+  { slug: "pemasangan-lampu-stop-kontak", name: "Pemasangan Lampu & Stop Kontak" },
+  { slug: "pengecekan-perawatan-instalasi", name: "Pengecekan & Perawatan Instalasi" }
 ];
 ---
 
@@ -22,7 +18,7 @@ const serviceOptions = [
   <div class="mb-6 space-y-2">
     <h3 class="text-xl font-black text-primary tracking-tight">Formulir Pemesanan Jasa</h3>
     <p class="text-xs text-text-light leading-relaxed">
-      Lengkapi data di bawah ini. Tim teknis BREGAS Elektrik akan segera menghubungi Anda untuk konfirmasi jadwal survei lapangan.
+      Lengkapi data di bawah ini. Tim teknis BREGAS ELEKTRIK akan segera menghubungi Anda untuk konfirmasi jadwal survei lapangan.
     </p>
   </div>
 
@@ -46,7 +42,7 @@ const serviceOptions = [
     </div>
 
     <div class="space-y-1.5">
-      <label for="client-phone" class="text-xs font-bold text-primary uppercase tracking-wider block">Nomor HP / WhatsApp</label>
+      <label for="client-phone" class="text-xs font-bold text-primary uppercase tracking-wider block">Nomor WhatsApp Aktif (Wajib)</label>
       <div class="relative">
         <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-text-light">
           <Phone class="w-4 h-4 stroke-[2]" />
@@ -85,11 +81,14 @@ const serviceOptions = [
         <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-text-light">
           <Wrench class="w-4 h-4 stroke-[2]" />
         </div>
+        
+        {/* PERBAIKAN: Menambahkan atribut 'disabled' dan mengubah style visual agar terkunci */}
         <select 
           id="client-service" 
           name="service" 
           required 
-          class="w-full pl-10 pr-4 py-3 bg-background border border-border-custom/80 rounded-xl text-sm focus:outline-hidden focus:border-accent focus:ring-1 focus:ring-accent transition-all font-medium text-primary appearance-none cursor-pointer"
+          disabled
+          class="w-full pl-10 pr-10 py-3 bg-slate-50 border border-border-custom/80 rounded-xl text-sm text-slate-500 cursor-not-allowed font-medium appearance-none"
         >
           <option value="" disabled selected>Pilih jenis layanan teknis</option>
           {serviceOptions.map((option) => (
@@ -148,7 +147,6 @@ const serviceOptions = [
 </div>
 
 <script>
-  // 1. Logika untuk Auto-Select Berdasarkan URL Parameter (?slug=...)
   function autoSelectService() {
     const urlParams = new URLSearchParams(window.location.search);
     const slug = urlParams.get('slug');
@@ -156,7 +154,6 @@ const serviceOptions = [
     if (slug) {
       const selectElement = document.getElementById('client-service') as HTMLSelectElement;
       if (selectElement) {
-        // Cek apakah option dengan value=slug tersebut memang eksis di dalam element select
         const hasOption = Array.from(selectElement.options).some(option => option.value === slug);
         if (hasOption) {
           selectElement.value = slug;
@@ -165,10 +162,9 @@ const serviceOptions = [
     }
   }
 
-  // Jalankan fungsi autoSelect saat komponen terpasang di DOM browser
+  // Tetap panggil fungsi autoSelect saat DOM dimuat halaman
   document.addEventListener('DOMContentLoaded', autoSelectService);
 
-  // 2. Integrasi Pengiriman Form (Bisa diarahkan ke WhatsApp atau API endpoint)
   const form = document.getElementById('order-form');
   form?.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -177,24 +173,34 @@ const serviceOptions = [
     const name = formData.get('name');
     const phone = formData.get('phone');
     const address = formData.get('address');
+    
     const serviceSelect = document.getElementById('client-service') as HTMLSelectElement;
     const serviceName = serviceSelect.options[serviceSelect.selectedIndex].text;
+    
     const schedule = formData.get('schedule');
-    const notes = formData.get('notes') || 'Tidak ada catatan tambahan.';
+    const notes = formData.get('notes') || '-';
 
-    // Menyusun teks template untuk dikirim rapi ke sistem admin WhatsApp
-    const waText = `*FORM PEMESANAN JASA - BREGAS ELEKTRIK*\n\n` +
-                   `• *Nama:* ${name}\n` +
-                   `• *No. HP:* ${phone}\n` +
-                   `• *Alamat:* ${address}\n` +
-                   `• *Layanan:* ${serviceName}\n` +
-                   `• *Jadwal:* ${schedule}\n` +
-                   `• *Catatan:* ${notes}`;
+    // PERBAIKAN: Format teks pesan WhatsApp disesuaikan persis dengan template baru Anda
+    const waText = `Halo BREGAS ELEKTRIK,\n` +
+                   `Saya ingin mengajukan permintaan layanan dengan rincian sebagai berikut:\n` +
+                   `━━━━━━━━━━━━━━━━━━\n` +
+                   `DATA PELANGGAN\n` +
+                   `• Nama : ${name}\n` +
+                   `• Nomor HP : ${phone}\n` +
+                   `• Alamat : ${address}\n` +
+                   `LAYANAN\n` +
+                   `• Jenis Layanan : ${serviceName}\n` +
+                   `JADWAL PENGERJAAN\n` +
+                   `• Tanggal : ${schedule}\n` +
+                   `KETERANGAN TAMBAHAN\n` +
+                   `• ${notes}\n` +
+                   `━━━━━━━━━━━━━━━━━━\n` +
+                   `Mohon konfirmasi terkait ketersediaan jadwal, estimasi biaya, serta proses selanjutnya.\n` +
+                   `Terima kasih.`;
 
-    const waNumber = "628123456789"; // Ganti dengan nomor WhatsApp Admin Anda
+    const waNumber = "6285712425961"; 
     const waUrl = `https://wa.me/${waNumber}?text=${encodeURIComponent(waText)}`;
     
-    // Redirect langsung ke WhatsApp chat sistem operasional
     window.open(waUrl, '_blank');
   });
 </script>

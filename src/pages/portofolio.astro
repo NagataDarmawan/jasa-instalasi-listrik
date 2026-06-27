@@ -1,53 +1,86 @@
 ---
 // src/components/Portfolio.astro
-import { ImageOff, ExternalLink } from 'lucide-astro';
+import { ImageOff, ArrowUpRight } from 'lucide-astro';
 import '../styles/global.css';
 
+// MENYESUAIKAN DATA: Menyelaraskan dengan lini layanan baru (Rumah, Toko/Usaha, Lampu/Panel)
 const projects = [
-  { title: "Modernisasi Panel Industri", category: "Panel & Distribusi", img: "/img/proyek-panel.jpg" },
-  { title: "Instalasi Mewah Residential", category: "Smart Home", img: "/img/proyek-rumah.jpg" },
-  { title: "Optimalisasi Gudang Logistik", category: "Penerangan", img: "/img/proyek-gudang.jpg" }
+  { 
+    title: "Instalasi Panel & Pembagian Arus Rumah", 
+    category: "Instalasi Listrik Rumah", 
+    img: "/img/proyek-panel.jpg" 
+  },
+  { 
+    title: "Sistem Penerangan & Daya Kafe Modern", 
+    category: "Instalasi Ruko & Toko", 
+    img: "/img/proyek-gudang.jpg" 
+  },
+  { 
+    title: "Peremajaan Kabel & Penggantian Box MCB Utama", 
+    category: "Pemasangan & Penggantian MCB", 
+    img: "/img/proyek-rumah.jpg" 
+  }
 ];
 ---
 
-<section id="portfolio" class="py-24 bg-surface">
+<section id="portfolio" class="py-24 bg-surface border-b border-border-custom/20">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+    
+    {/* Header Section dengan Spacing & Tipografi Standar Industri */}
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
       <div class="max-w-xl">
         <h2 class="text-xs font-bold tracking-wider uppercase text-accent mb-2">Dokumentasi Proyek</h2>
-        <p class="text-3xl font-extrabold text-primary">Rekam Jejak Profesional</p>
+        <p class="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-primary">Rekam Jejak Profesional</p>
+        <div class="w-12 h-1 bg-accent mt-3"></div>
       </div>
-      <a href="/proyek" class="text-primary font-bold flex items-center gap-2 hover:text-accent transition-colors border-b-2 border-accent pb-1">
-        Lihat Semua Proyek <ExternalLink class="w-4 h-4" />
+      <a 
+        href="/SemuaProyek" 
+        class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-accent bg-primary hover:bg-primary/90 py-3 px-5 rounded transition-all duration-200 shadow-sm group"
+      >
+        Lihat Semua Proyek 
+        <ArrowUpRight class="w-4 h-4 text-accent transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
       </a>
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    {/* Grid Sistem Portofolio */}
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {projects.map((proj) => (
-        <div class="group relative overflow-hidden rounded-lg bg-background border border-border-custom transition-all hover:border-accent">
+        <div class="group relative overflow-hidden rounded-xl bg-background border border-border-custom transition-all duration-300 hover:border-accent hover:shadow-md flex flex-col justify-between">
           
-          <!-- Area Gambar dengan Pratinjau -->
-          <div class="h-64 bg-slate-100 relative overflow-hidden flex flex-col items-center justify-center">
-            
-            <!-- Ikon Pratinjau (Latar Belakang) -->
-            <div class="absolute inset-0 flex flex-col items-center justify-center text-slate-400 group-hover:text-accent transition-colors">
-              <ImageOff class="w-12 h-12 stroke-[1.5]" />
-              <span class="text-xs uppercase tracking-widest font-semibold mt-2 opacity-60">Pratinjau</span>
+          <div>
+            {/* Area Gambar dengan Efek Hover & Overlay */}
+            <div class="h-64 bg-slate-100 relative overflow-hidden flex flex-col items-center justify-center cursor-pointer">
+              
+              {/* Ikon Pratinjau (Latar Belakang saat Gagal Muat) */}
+              <div class="absolute inset-0 flex flex-col items-center justify-center text-slate-400 group-hover:text-accent transition-colors duration-300">
+                <ImageOff class="w-10 h-10 stroke-[1.5]" />
+                <span class="text-[10px] uppercase tracking-widest font-bold mt-2 opacity-60">Pratinjau</span>
+              </div>
+
+              {/* Gambar Utama */}
+              <img 
+                src={proj.img} 
+                alt={proj.title} 
+                loading="lazy"
+                class="w-full h-full object-cover relative z-10 transition-transform duration-500 group-hover:scale-105"
+                onerror="this.style.opacity='0'"
+              />
+
+              {/* Standar Industri: Overlay Gelap Halus saat Card di-Hover */}
+              <div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 pointer-events-none"></div>
             </div>
 
-            <!-- Gambar Asli (Layer Depan) -->
-            <img 
-              src={proj.img} 
-              alt={proj.title} 
-              class="w-full h-full object-cover relative z-10 transition-transform duration-500 group-hover:scale-105"
-              onerror="this.style.opacity='0'"
-            />
+            {/* Informasi Detail Konten */}
+            <div class="p-6">
+              <span class="text-[10px] font-bold uppercase tracking-widest text-accent px-2 py-1 bg-accent/10 rounded">
+                {proj.category}
+              </span>
+              <h3 class="text-base sm:text-lg font-bold text-primary mt-3 tracking-tight leading-snug group-hover:text-secondary transition-colors duration-200">
+                {proj.title}
+              </h3>
+            </div>
           </div>
-
-          <div class="p-6">
-            <span class="text-[10px] font-bold uppercase tracking-widest text-accent">{proj.category}</span>
-            <h3 class="text-lg font-bold text-primary mt-2">{proj.title}</h3>
-          </div>
+          
         </div>
       ))}
     </div>
