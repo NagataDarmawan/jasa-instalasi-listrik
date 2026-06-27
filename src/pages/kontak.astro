@@ -1,0 +1,186 @@
+---
+// src/components/Contact.astro
+import { Mail, MessageCircle, MapPin, Phone, Facebook, Instagram, ShieldCheck, Clock, Zap } from 'lucide-astro';
+import '../styles/global.css';
+
+const waNumber = "628123456789";
+const waLink = `https://wa.me/${waNumber}?text=Halo%20BREGAS%20Elektrik,%20saya%20ingin%20berkonsultasi%20mengenai%20instalasi%20listrik.`;
+
+// Data Media Sosial & Kontak yang Disatukan agar Standardisasi Komponen Konsisten
+const contactChannels = [
+  {
+    name: "Telepon / WhatsApp",
+    value: "+62 812-3456-789",
+    type: "link",
+    link: waLink,
+    icon: Phone
+  },
+  {
+    name: "Email Resmi",
+    value: "info@bregaselektrik.com",
+    type: "link",
+    link: "mailto:info@bregaselektrik.com",
+    icon: Mail
+  },
+  {
+    name: "Facebook",
+    value: "BREGAS Elektrik Official",
+    type: "link",
+    link: "https://facebook.com/indoelektrik",
+    icon: Facebook
+  },
+  {
+    name: "Instagram",
+    value: "@bregaselektrik.id",
+    type: "link",
+    link: "https://instagram.com/indoelektrik",
+    icon: Instagram
+  }
+];
+
+// PERBAIKAN: Menambahkan indikator jaminan layanan teknis industri untuk mengisi kekosongan card kanan
+const serviceGuarantees = [
+  {
+    title: "Estimasi Respons",
+    desc: "Maksimal 15 Menit via WhatsApp",
+    icon: Clock
+  },
+  {
+    title: "Standar Regulasi",
+    desc: "Patuh Regulasi PUIL & Material SNI",
+    icon: ShieldCheck
+  },
+  {
+    title: "Cakupan Layanan",
+    desc: "Tegal, Slawi, Brebes & Sekitarnya",
+    icon: Zap
+  }
+];
+---
+
+<section id="kontak" class="py-24 bg-background border-b border-border-custom/20">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+      
+      <!-- SISI KIRI: Informasi Utama Korporat (7 Kolom) -->
+      <div class="lg:col-span-7 space-y-8">
+        <div class="space-y-3">
+          <h2 class="text-xs font-bold tracking-wider uppercase text-accent">Hubungi Kami</h2>
+          <p class="text-3xl md:text-4xl font-extrabold text-primary tracking-tight leading-tight">
+            Hubungan Komunikasi & Koordinasi Teknis Proyek
+          </p>
+          <div class="w-12 h-1 bg-accent mt-4"></div>
+        </div>
+        
+        <p class="text-text-main text-base leading-relaxed text-left opacity-90">
+          Silakan hubungi saluran representatif kami untuk mengatur jadwal survei lapangan, penyusunan Rencana Anggaran Biaya (RAB), maupun konsultasi standardisasi kelistrikan sesuai regulasi PUIL. Tim kami siap memberikan respons cepat demi menjaga kelancaran operasional infrastruktur Anda.
+        </p>
+        
+        <!-- Grid Kontak Saluran Komunikasi -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+          {contactChannels.map(item => {
+            const IconComponent = item.icon;
+            return (
+              <a 
+                href={item.link} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="p-5 bg-surface border border-border-custom/60 rounded-xl flex items-start gap-4 hover:border-accent/40 hover:shadow-xs transition-all duration-300 group"
+              >
+                <div class="p-3 bg-primary/5 text-primary rounded-lg group-hover:bg-primary group-hover:text-white transition-colors duration-300 shrink-0">
+                  <IconComponent class="w-5 h-5 stroke-[2]" />
+                </div>
+                <div class="space-y-1 min-w-0">
+                  <p class="text-[11px] font-bold uppercase tracking-wider text-text-light">{item.name}</p>
+                  <p class="text-primary font-bold text-sm sm:text-base truncate group-hover:text-accent transition-colors">
+                    {item.value}
+                  </p>
+                </div>
+              </a>
+            )
+          })}
+
+          <!-- Integrasi Custom TikTok Card -->
+          <a 
+            href="https://tiktok.com/@indoelektrik" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="p-5 bg-surface border border-border-custom/60 rounded-xl flex items-start gap-4 hover:border-accent/40 hover:shadow-xs transition-all duration-300 group"
+          >
+            <div class="p-3 bg-primary/5 text-primary rounded-lg group-hover:bg-primary group-hover:text-white transition-colors duration-300 shrink-0 flex items-center justify-center">
+              <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.03 1.6 4.2 1.25.92 2.76 1.43 4.33 1.5v3.9c-1.42-.03-2.83-.43-4.06-1.15-.22-.13-.42-.28-.62-.43v6.07c.04 3.75-2.5 7.15-6.17 7.74-3.32.65-6.84-1.22-7.98-4.43-1.4-3.56.55-7.75 4.22-8.6 1-.25 2.05-.18 3.01.2v3.95c-.75-.36-1.6-.45-2.4-.23-1.4.35-2.33 1.76-2.14 3.2.18 1.6 1.64 2.72 3.23 2.5 1.42-.15 2.45-1.33 2.44-2.76V0h.43z"/>
+              </svg>
+            </div>
+            <div class="space-y-1 min-w-0">
+              <p class="text-[11px] font-bold uppercase tracking-wider text-text-light">TikTok</p>
+              <p class="text-primary font-bold text-sm sm:text-base truncate group-hover:text-accent transition-colors">
+                @bregaselektrik
+              </p>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- SISI KANAN: Panel Utama WhatsApp Konsultasi (5 Kolom) -->
+      <div class="lg:col-span-5 bg-surface p-8 sm:p-10 border border-border-custom/80 shadow-md rounded-2xl flex flex-col justify-between h-full space-y-8">
+        
+        <!-- Header Panel -->
+        <div class="space-y-4">
+          <div class="inline-flex items-center gap-2 text-xs font-bold text-emerald-600 bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20 w-fit">
+            <span class="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse"></span>
+            Online Operasional
+          </div>
+          <h3 class="text-xl font-extrabold text-primary tracking-tight">Pusat Layanan Cepat</h3>
+          <p class="text-sm text-text-light leading-relaxed text-left">
+            Saluran ini terhubung langsung ke sistem manajemen operasional teknis kami untuk melayani koordinasi darurat di lapangan.
+          </p>
+        </div>
+        
+        <!-- PERBAIKAN VISUAL: Menambahkan list parameter akuntabilitas layanan teknik industri -->
+        <div class="space-y-4 bg-background/40 p-4 border border-border-custom/40 rounded-xl">
+          {serviceGuarantees.map(guarantee => {
+            const GuaranteeIcon = guarantee.icon;
+            return (
+              <div class="flex items-center gap-3.5">
+                <div class="p-2 bg-primary/5 border border-border-custom/40 text-primary rounded-md shrink-0">
+                  <GuaranteeIcon class="w-4 h-4 stroke-[2]" />
+                </div>
+                <div>
+                  <p class="text-[11px] font-bold uppercase tracking-wider text-text-light leading-none">{guarantee.title}</p>
+                  <p class="text-xs font-bold text-primary mt-1">{guarantee.desc}</p>
+                </div>
+              </div>
+            )
+          })}
+        </div>
+        
+        <!-- Bagian Aksi / Action Buttons -->
+        <div class="space-y-6">
+          <a 
+            href={waLink} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="flex items-center justify-center gap-3 w-full bg-primary text-white hover:bg-primary/95 py-4 px-6 rounded-xl font-bold transition-all duration-200 shadow-md hover:shadow-lg transform active:scale-[0.99]"
+          >
+            <MessageCircle class="w-5 h-5 text-accent stroke-[2.5]" />
+            Mulai Konsultasi Proyek
+          </a>
+
+          <div class="h-px bg-border-custom/40 w-full"></div>
+
+          <div class="flex items-start gap-3 text-text-light text-xs">
+            <MapPin class="w-4 h-4 text-accent mt-0.5 shrink-0" />
+            <div class="space-y-1">
+              <p class="font-bold text-primary">Kantor Operasional Terpadu</p>
+              <p class="leading-relaxed">Jl. Gumayun No. 12, Tegal, Jawa Tengah</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>

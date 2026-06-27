@@ -1,0 +1,46 @@
+---
+// src/layouts/Layout.astro
+import Navbar from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+// Mengimpor file CSS global agar Tailwind v4.0 aktif di semua halaman
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { 
+  title, 
+  description = "Jasa instalasi listrik profesional, aman, rapi, dan bergaransi standar SNI." 
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="id" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    
+    <title>{title}</title>
+    <meta name="description" content={description} />
+  </head>
+  
+  <body class="bg-background text-text-main font-sans antialiased flex flex-col min-h-screen">
+    
+    <!-- Navbar Global -->
+    <Navbar />
+    
+    <!-- Konten Halaman akan Masuk ke Sini secara otomatis -->
+    <main class="flex-grow">
+      <slot />
+    </main>
+    
+    <!-- Footer Global -->
+    <Footer />
+    
+  </body>
+</html>

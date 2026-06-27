@@ -1,0 +1,229 @@
+---
+// src/components/Header.astro
+import { Zap, Phone, Menu, X } from 'lucide-astro';
+
+const currentPath = Astro.url.pathname;
+
+const navItems = [
+  { name: 'Beranda', href: '#' },
+  { name: 'Tentang', href: '#tentang' },
+  { name: 'Layanan', href: '/#layanan' },
+  { name: 'Portfolio', href: '/#portfolio' }, // Sinkron menggunakan ID lokal halaman utama
+  { name: 'FAQ', href: '/#faq' },
+  { name: 'Kontak', href: '/#kontak' },
+];
+
+const catalogLink = "/catalogLayanan";
+---
+
+<header 
+  id="main-header" 
+  class="fixed top-0 left-0 w-full z-50 bg-transparent border-b border-transparent transition-all duration-300 ease-in-out"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-20">
+      
+      <a href="#" class="flex items-center gap-2 font-extrabold text-xl tracking-tight text-accent" id="logo-text">
+        <Zap class="w-6 h-6 fill-current text-accent" />
+        <span class="text-accent transition-colors duration-300" id="logo-name">BREGAS ELEKTRIK</span>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-8">
+        {navItems.map(item => {
+          const isActive = item.href === '#' 
+            ? currentPath === '/' 
+            : currentPath === item.href || (item.href !== '/' && !item.href.startsWith('#') && currentPath.startsWith(item.href));
+          
+          return (
+            <a 
+              href={item.href} 
+              class={`nav-link text-sm font-semibold tracking-wide transition-colors duration-200 ${
+                isActive 
+                  ? 'text-white border-b-2 border-white pb-1' 
+                  : 'text-accent hover:text-white'
+              }`}
+            >
+              {item.name}
+            </a>
+          )
+        })}
+      </nav>
+
+      <div class="hidden md:block">
+        <a 
+          href={catalogLink} 
+          class="bg-accent hover:bg-accent/80 text-primary font-bold py-2.5 px-5 rounded-lg text-sm shadow-md transition-all duration-200 flex items-center gap-2 transform hover:-translate-y-0.5"
+        >
+          <Phone class="w-4 h-4" />
+          <span>Pesan Jasa</span>
+        </a>
+      </div>
+
+      <div class="flex md:hidden">
+        <button 
+          id="menu-btn"
+          type="button" 
+          class="text-accent hover:text-white focus:outline-none p-2 rounded-md transition-colors duration-300 flex items-center justify-center"
+          aria-label="Toggle Menu"
+        >
+          <div id="hamburger-icon" class="block">
+            <Menu class="w-6 h-6" />
+          </div>
+          <div id="close-icon" class="hidden">
+            <X class="w-6 h-6" />
+          </div>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="mobile-menu" class="hidden md:hidden bg-surface/95 backdrop-blur-lg border-b border-border-custom/50 absolute w-full left-0 shadow-lg">
+    <div class="px-4 pt-2 pb-6 space-y-3">
+      {navItems.map(item => {
+        const isActive = item.href === '#' 
+          ? currentPath === '/' 
+          : currentPath === item.href || (item.href !== '/' && !item.href.startsWith('#') && currentPath.startsWith(item.href));
+        return (
+          <a 
+            href={item.href} 
+            class={`block px-3 py-2.5 rounded-md text-base font-medium transition-colors ${
+              isActive 
+                ? 'bg-primary/5 text-accent font-bold' 
+                : 'text-text-main hover:bg-slate-50 hover:text-accent'
+            }`}
+          >
+            {item.name}
+          </a>
+        )
+      })}
+      
+      <div class="pt-4 border-t border-border-custom/50 px-3">
+        <a 
+          href={catalogLink} 
+          class="w-full text-center bg-accent hover:bg-accent/80 text-primary font-bold py-3 px-4 rounded-lg block text-sm shadow-sm transition-colors"
+        >
+          Pesan Jasa
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  const header = document.getElementById('main-header');
+  const logoName = document.getElementById('logo-name');
+  const menuBtn = document.getElementById('menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const hamburgerIcon = document.getElementById('hamburger-icon');
+  const closeIcon = document.getElementById('close-icon');
+  const navLinks = document.querySelectorAll('.nav-link');
+
+  const handleScroll = () => {
+    const scrollPosition = window.scrollY;
+    const navbarHeight = 100;
+
+    if (scrollPosition > 20) {
+      header?.classList.remove('bg-transparent', 'border-transparent');
+      header?.classList.add('bg-surface/70', 'backdrop-blur-md', 'border-border-custom/50', 'shadow-xs');
+      
+      logoName?.classList.remove('text-accent');
+      logoName?.classList.add('text-primary');
+      menuBtn?.classList.remove('text-accent');
+      menuBtn?.classList.add('text-primary');
+    } else {
+      header?.classList.add('bg-transparent', 'border-transparent');
+      header?.classList.remove('bg-surface/70', 'backdrop-blur-md', 'border-border-custom/50', 'shadow-xs');
+      
+      logoName?.classList.remove('text-primary');
+      logoName?.classList.add('text-accent');
+      menuBtn?.classList.remove('text-primary');
+      menuBtn?.classList.add('text-accent');
+    }
+
+    let currentActiveHref = '#';
+
+    if (scrollPosition > 50) {
+      const sections = ['tentang', 'layanan', 'alurPengerjaan', 'portfolio', 'testimoni', 'faq', 'kontak'];
+      let activeSectionId = null;
+
+      for (const id of sections) {
+        const element = document.getElementById(id);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          if (rect.top <= navbarHeight) {
+            activeSectionId = id;
+          }
+        }
+      }
+
+      if (activeSectionId === 'tentang') {
+        currentActiveHref = '#tentang';
+      } else if (activeSectionId === 'layanan' || activeSectionId === 'alurPengerjaan') {
+        currentActiveHref = '/#layanan';
+      } else if (activeSectionId === 'portfolio' || activeSectionId === 'testimoni') {
+        // PERBAIKAN: Disamakan menjadi '/#portfolio' agar cocok dengan data navItems di atas
+        currentActiveHref = '/#portfolio'; 
+      } else if (activeSectionId === 'faq') {
+        currentActiveHref = '/#faq';
+      } else if (activeSectionId === 'kontak') {
+        currentActiveHref = '/#kontak';
+      }
+    }
+
+    if (window.innerHeight + scrollPosition >= document.documentElement.scrollHeight - 20) {
+      currentActiveHref = '/#kontak';
+    }
+
+    navLinks.forEach(link => {
+      link.classList.remove('text-accent', 'text-white', 'border-white', 'text-text-main', 'hover:text-white', 'hover:text-accent', 'border-b-2', 'border-accent');
+      
+      const href = link.getAttribute('href');
+      const isCurrentActive = href === currentActiveHref;
+
+      if (scrollPosition > 20) {
+        if (isCurrentActive) {
+          link.classList.add('text-accent', 'border-b-2', 'border-accent');
+        } else {
+          link.classList.add('text-text-main', 'hover:text-accent');
+        }
+      } else {
+        if (isCurrentActive) {
+          link.classList.add('text-white', 'border-b-2', 'border-white');
+        } else {
+          link.classList.add('text-accent', 'hover:text-white');
+        }
+      }
+    });
+  };
+
+  window.addEventListener('scroll', handleScroll);
+  window.addEventListener('DOMContentLoaded', handleScroll);
+
+  const mobileLinks = mobileMenu?.querySelectorAll('a');
+  mobileLinks?.forEach(link => {
+    link.addEventListener('click', () => {
+      const href = link.getAttribute('href');
+      if (href && (href.startsWith('#') || href.includes('#'))) {
+        mobileMenu?.classList.add('hidden');
+        hamburgerIcon?.classList.remove('hidden');
+        closeIcon?.classList.add('hidden');
+        if (window.scrollY <= 20) {
+          header?.classList.remove('bg-surface');
+          header?.classList.add('bg-transparent');
+        }
+      }
+    });
+  });
+
+  menuBtn?.addEventListener('click', () => {
+    mobileMenu?.classList.toggle('hidden');
+    hamburgerIcon?.classList.toggle('hidden');
+    closeIcon?.classList.toggle('hidden');
+    
+    if (window.scrollY <= 20) {
+      header?.classList.toggle('bg-surface');
+      header?.classList.toggle('bg-transparent');
+    }
+  });
+</script>

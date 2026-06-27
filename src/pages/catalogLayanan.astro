@@ -1,0 +1,178 @@
+---
+import Footer from '../components/Footer.astro';
+import FormPemesanan from '../components/formPemesanan.astro'; // Mengimpor form Anda sebagai pop-up
+import { ImageOff, ArrowRight } from 'lucide-astro';
+import '../styles/global.css';
+
+const layananList = [
+  {
+    id: "instalasi-listrik-rumah",
+    title: "Instalasi Listrik Rumah",
+    description: "Pemasangan jalur kabel baru, titik lampu, dan stop kontak untuk hunian tinggal yang aman dan rapi.",
+    img: "/img/layanan-rumah.jpg"
+  },
+  {
+    id: "instalasi-listrik-ruko",
+    title: "Instalasi Listrik Ruko",
+    description: "Sistem kelistrikan komersial untuk ruko guna mendukung operasional bisnis dan pencahayaan display.",
+    img: "/img/layanan-ruko.jpg"
+  },
+  {
+    id: "instalasi-kantor",
+    title: "Instalasi Kantor",
+    description: "Penyusunan kabel data, stop kontak meja kerja, dan sistem kelistrikan ruang kerja yang minim gangguan.",
+    img: "/img/layanan-kantor.jpg"
+  },
+  {
+    id: "instalasi-gudang",
+    title: "Instalasi Gudang",
+    description: "Pemasangan lampu high-bay berkapasitas besar dan sistem kelistrikan area logistik yang andal.",
+    img: "/img/layanan-gudang.jpg"
+  },
+  {
+    id: "instalasi-pabrik-ringan",
+    title: "Instalasi Pabrik Ringan",
+    description: "Penyediaan suplai daya untuk mesin-mesin industri ringan dan jalur produksi skala menengah.",
+    img: "/img/layanan-pabrik.jpg"
+  },
+  {
+    id: "penambahan-daya",
+    title: "Penambahan Daya",
+    description: "Pengurusan dan instalasi pendukung untuk menaikkan daya PLN agar tidak sering turun/jeglek.",
+    img: "/img/layanan-daya.jpg"
+  },
+  {
+    id: "pemasangan-mcb",
+    title: "Pemasangan MCB",
+    description: "Penggantian dan pemasangan MCB baru untuk membagi beban arus listrik yang lebih aman.",
+    img: "/img/layanan-mcb.jpg"
+  },
+  {
+    id: "instalasi-panel-listrik",
+    title: "Instalasi Panel Listrik",
+    description: "Perakitan dan penataan panel pembagi (SDP) maupun panel utama (MDP) dengan standar K3.",
+    img: "/img/layanan-panel.jpg"
+  },
+  {
+    id: "perbaikan-instalasi",
+    title: "Perbaikan Instalasi",
+    description: "Pencarian korsleting (troubleshooting), perbaikan kabel rapuh, dan peremajaan sistem listrik.",
+    img: "/img/layanan-perbaikan.jpg"
+  },
+  {
+    id: "maintenance-listrik-berkala",
+    title: "Maintenance Listrik Berkala",
+    description: "Inspeksi rutin, pengecekan tahanan isolasi, dan pembersihan komponen untuk mencegah kebakaran.",
+    img: "/img/layanan-maintenance.jpg"
+  }
+];
+---
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Katalog Layanan Kelistrikan</title>
+</head>
+<body class="bg-background text-text-main flex flex-col min-h-screen relative">
+
+  <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-24">
+    <div class="mb-16">
+      <h2 class="text-xs font-bold tracking-wider uppercase text-accent mb-2">Layanan Kami</h2>
+      <h1 class="text-3xl font-extrabold text-primary">Solusi Teknisi Listrik Profesional</h1>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {layananList.map((layanan) => (
+        <div class="group relative overflow-hidden rounded-lg bg-surface border border-border-custom transition-all hover:border-accent flex flex-col justify-between">
+          
+          <div>
+            <div class="h-48 bg-slate-100 relative overflow-hidden flex flex-col items-center justify-center">
+              <div class="absolute inset-0 flex flex-col items-center justify-center text-slate-400 group-hover:text-accent transition-colors">
+                <ImageOff class="w-10 h-10 stroke-[1.5]" />
+                <span class="text-[10px] uppercase tracking-widest font-semibold mt-2 opacity-60">Pratinjau</span>
+              </div>
+
+              <img 
+                src={layanan.img} 
+                alt={layanan.title} 
+                class="w-full h-full object-cover relative z-10 transition-transform duration-500 group-hover:scale-105"
+                onerror="this.style.opacity='0'"
+              />
+            </div>
+
+            <div class="p-6">
+              <h3 class="text-lg font-bold text-primary mb-2 transition-colors group-hover:text-secondary">{layanan.title}</h3>
+              <p class="text-text-light text-sm leading-relaxed line-clamp-3">{layanan.description}</p>
+            </div>
+          </div>
+
+          <div class="px-6 pb-6 pt-2">
+            {/* DIUBAH: Menggunakan tag button dengan atribut data-slug agar memicu script pop-up */}
+            <button 
+              data-open-modal
+              data-slug={layanan.id}
+              class="flex items-center justify-center gap-2 w-full text-center bg-accent text-surface font-bold py-2.5 px-4 rounded hover:opacity-90 transition-all duration-200 border-b-4 border-primary text-sm cursor-pointer"
+            >
+              Pesan Jasa Sekarang <ArrowRight class="w-4 h-4" />
+            </button>
+          </div>
+
+        </div>
+      ))}
+    </div>
+  </main>
+
+  <div id="order-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4">
+    <div id="close-modal-bg" class="absolute inset-0 bg-black/60 backdrop-blur-xs cursor-pointer"></div>
+    
+    <div class="relative w-full max-w-2xl bg-surface border border-border-custom rounded-2xl shadow-2xl max-h-[90vh] overflow-y-auto animate-in fade-in zoom-in-95 duration-200">
+      
+      <button id="close-modal-btn" class="absolute top-4 right-4 text-text-light hover:text-primary font-bold text-xl p-2 cursor-pointer z-50">
+        &times;
+      </button>
+
+      <FormPemesanan />
+    </div>
+  </div>
+
+  <Footer />
+
+  <script>
+    const modal = document.getElementById('order-modal');
+    const openButtons = document.querySelectorAll('[data-open-modal]');
+    const closeBtn = document.getElementById('close-modal-btn');
+    const closeBg = document.getElementById('close-modal-bg');
+
+    // Ambil elemen select dan input hidden dari komponen form Anda
+    const selectElement = document.getElementById('client-service') as HTMLSelectElement;
+    const hiddenInputElement = document.getElementById('hidden-client-service') as HTMLInputElement;
+
+    // Fungsi membuka pop-up dan mensimulasikan auto-select slug layanan
+    openButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const slug = button.getAttribute('data-slug');
+        
+        if (slug && selectElement && hiddenInputElement) {
+          selectElement.value = slug;
+          hiddenInputElement.value = slug;
+        }
+
+        // Tampilkan modal pop-up ke tengah layar
+        modal?.classList.remove('hidden');
+        document.body.style.overflow = 'hidden'; // Kunci scroll halaman utama saat pop-up aktif
+      });
+    });
+
+    // Fungsi menutup pop-up
+    function closeModal() {
+      modal?.classList.add('hidden');
+      document.body.style.overflow = ''; // Aktifkan kembali scroll halaman utama
+    }
+
+    closeBtn?.addEventListener('click', closeModal);
+    closeBg?.addEventListener('click', closeModal);
+  </script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+---
+// src/components/Portfolio.astro
+import { ImageOff, ExternalLink } from 'lucide-astro';
+import '../styles/global.css';
+
+const projects = [
+  { title: "Modernisasi Panel Industri", category: "Panel & Distribusi", img: "/img/proyek-panel.jpg" },
+  { title: "Instalasi Mewah Residential", category: "Smart Home", img: "/img/proyek-rumah.jpg" },
+  { title: "Optimalisasi Gudang Logistik", category: "Penerangan", img: "/img/proyek-gudang.jpg" }
+];
+---
+
+<section id="portfolio" class="py-24 bg-surface">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+      <div class="max-w-xl">
+        <h2 class="text-xs font-bold tracking-wider uppercase text-accent mb-2">Dokumentasi Proyek</h2>
+        <p class="text-3xl font-extrabold text-primary">Rekam Jejak Profesional</p>
+      </div>
+      <a href="/proyek" class="text-primary font-bold flex items-center gap-2 hover:text-accent transition-colors border-b-2 border-accent pb-1">
+        Lihat Semua Proyek <ExternalLink class="w-4 h-4" />
+      </a>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      {projects.map((proj) => (
+        <div class="group relative overflow-hidden rounded-lg bg-background border border-border-custom transition-all hover:border-accent">
+          
+          <!-- Area Gambar dengan Pratinjau -->
+          <div class="h-64 bg-slate-100 relative overflow-hidden flex flex-col items-center justify-center">
+            
+            <!-- Ikon Pratinjau (Latar Belakang) -->
+            <div class="absolute inset-0 flex flex-col items-center justify-center text-slate-400 group-hover:text-accent transition-colors">
+              <ImageOff class="w-12 h-12 stroke-[1.5]" />
+              <span class="text-xs uppercase tracking-widest font-semibold mt-2 opacity-60">Pratinjau</span>
+            </div>
+
+            <!-- Gambar Asli (Layer Depan) -->
+            <img 
+              src={proj.img} 
+              alt={proj.title} 
+              class="w-full h-full object-cover relative z-10 transition-transform duration-500 group-hover:scale-105"
+              onerror="this.style.opacity='0'"
+            />
+          </div>
+
+          <div class="p-6">
+            <span class="text-[10px] font-bold uppercase tracking-widest text-accent">{proj.category}</span>
+            <h3 class="text-lg font-bold text-primary mt-2">{proj.title}</h3>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

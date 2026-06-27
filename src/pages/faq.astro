@@ -1,0 +1,66 @@
+---
+// src/components/FAQ.astro
+import { ChevronDown } from 'lucide-astro';
+import '../styles/global.css';
+
+const faqs = [
+  {
+    q: "Apakah layanan BREGAS Elektrik mencakup perbaikan darurat?",
+    a: "Ya, kami melayani perbaikan darurat untuk masalah seperti korsleting, listrik padam sebagian, atau masalah kelistrikan lainnya yang memerlukan penanganan cepat. Silakan hubungi kami melalui WhatsApp untuk respons instan."
+  },
+  {
+    q: "Apakah teknisi BREGAS Elektrik bersertifikat?",
+    a: "Tentu. Seluruh teknisi kami adalah tenaga profesional yang memiliki sertifikasi kompetensi teknis serta memahami standar keselamatan kerja K3 dan regulasi PUIL untuk menjamin keamanan instalasi Anda."
+  },
+  {
+    q: "Bagaimana cara menentukan harga atau biaya pengerjaan?",
+    a: "Kami menerapkan sistem harga yang transparan. Untuk skala kecil, kami menggunakan standar harga layanan, sedangkan untuk proyek menengah/besar, kami akan melakukan survei lokasi terlebih dahulu untuk menyusun Rencana Anggaran Biaya (RAB) yang akurat."
+  },
+  {
+    q: "Apakah ada garansi untuk setiap pengerjaan instalasi?",
+    a: "Ya, kami memberikan garansi pasca-instalasi untuk setiap pengerjaan yang kami lakukan. Detail durasi dan cakupan garansi akan tertuang dalam nota atau kontrak kerja sebagai jaminan ketenangan pikiran Anda."
+  },
+  {
+    q: "Material apa yang digunakan dalam instalasi?",
+    a: "Kami berkomitmen hanya menggunakan material listrik yang telah memenuhi standar SNI (Standar Nasional Indonesia) dan resmi, guna meminimalisir risiko korsleting dan memastikan umur panjang instalasi Anda."
+  }
+];
+---
+
+<section id="faq" class="py-24 bg-primary border-b border-white/[0.08]">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-16">
+      <h2 class="text-xs font-bold tracking-wider uppercase text-accent mb-2">Pusat Bantuan</h2>
+      <p class="text-2xl sm:text-3xl font-extrabold tracking-tight text-white">
+        Pertanyaan yang Sering Diajukan
+      </p>
+      <div class="w-16 h-1 bg-accent mx-auto mt-5 rounded-full"></div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+      {faqs.map((item, index) => (
+        <div 
+          class={`bg-white/[0.03] backdrop-blur-md border border-white/10 rounded-xl overflow-hidden group transition-all duration-200 hover:border-white/20 shadow-sm ${
+            index === faqs.length - 1 ? 'md:col-span-2' : ''
+          }`}
+        >
+          <button 
+            class="w-full flex items-center justify-between p-6 text-left focus:outline-none gap-4"
+            onclick="this.parentElement.querySelector('.faq-content').classList.toggle('hidden'); this.querySelector('.chevron').classList.toggle('rotate-180');"
+          >
+            <span class="font-bold text-white text-sm sm:text-base tracking-tight leading-snug group-hover:text-accent transition-colors">
+              {item.q}
+            </span>
+            <ChevronDown class="chevron w-5 h-5 text-accent transition-transform duration-300 shrink-0" />
+          </button>
+          
+          <div class="faq-content hidden px-6 pb-6 text-sm font-normal text-white/80 leading-relaxed border-t border-white/5 pt-4">
+            {item.a}
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>

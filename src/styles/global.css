@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-text-main: var(--text);
+  --color-text-light: var(--text-light);
+  --color-border-custom: var(--border);
+}
+
+:root {
+  --primary: #0F172A;      /* Navy */
+  --secondary: #1E293B;    /* Dark Slate */
+  --accent: #FACC15;       /* Electric Yellow */
+  --background: #F8FAFC;   /* Broken White */
+  --surface: #FFFFFF;
+  --text: #1E293B;
+  --text-light: #64748B;
+  --border: #E2E8F0;
+}

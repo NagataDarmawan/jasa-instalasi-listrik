@@ -1,0 +1,104 @@
+---
+// src/components/Footer.astro
+import { MapPin, MessageCircle, Mail, Facebook, Instagram } from 'lucide-astro';
+
+const currentYear = new Date().getFullYear();
+
+const menuTentang = [
+  { name: 'Profil Perusahaan', href: '/#tentang' },
+  { name: 'Visi & Misi', href: '/#tentang' },
+  { name: 'Komitmen K3', href: '/#tentang' },
+];
+
+const menuLayanan = [
+  { name: 'Instalasi Listrik Rumah & Ruko', href: '/detailLayanan?slug=instalasi-listrik-rumah' },
+  { name: 'Instalasi Kantor & Gudang', href: '/detailLayanan?slug=instalasi-kantor' },
+  { name: 'Instalasi Pabrik Ringan', href: '/detailLayanan?slug=instalasi-pabrik-ringan' },
+  { name: 'Penambahan Daya & MCB', href: '/detailLayanan?slug=penambahan-daya' },
+  { name: 'Instalasi Panel Listrik', href: '/detailLayanan?slug=instalasi-panel-listrik' },
+  { name: 'Perbaikan & Maintenance', href: '/detailLayanan?slug=perbaikan-instalasi' }
+];
+
+const waNumber = "628123456789";
+const waLink = `https://wa.me/${waNumber}?text=Halo%20Bregas%20Elektrik,%20saya%20ingin%20berkonsultasi%20mengenai%20layanan.`;
+---
+
+<footer class="bg-primary text-white border-t border-border-custom/20 pt-16 pb-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+    
+    <div class="space-y-4">
+      <a href="/" class="flex items-center gap-2 font-black text-lg tracking-wider text-white">
+        <span class="text-accent text-xl">⚡</span> BREGAS ELEKTRIK
+      </a>
+      <p class="text-text-light/80 text-xs sm:text-sm leading-relaxed font-normal text-left">
+        Penyedia jasa rekayasa instalasi kelistrikan profesional berstandar nasional PUIL & SNI. Kami mengedepankan aspek proteksi dini dan keselamatan kerja K3.
+      </p>
+      <div class="flex items-center gap-3.5 pt-2">
+        <a href="#" class="p-2 bg-white/5 hover:bg-accent hover:text-primary rounded-xl transition-all duration-200 text-text-light" aria-label="Facebook">
+          <Facebook class="h-4 w-4" />
+        </a>
+        <a href="#" class="p-2 bg-white/5 hover:bg-accent hover:text-primary rounded-xl transition-all duration-200 text-text-light" aria-label="Instagram">
+          <Instagram class="h-4 w-4" />
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <h3 class="text-xs font-bold tracking-widest uppercase text-accent mb-4">Perusahaan</h3>
+      <ul class="space-y-3">
+        {menuTentang.map(item => (
+          <li>
+            <a href={item.href} class="text-xs sm:text-sm text-text-light/90 hover:text-accent transition-colors font-medium">
+              {item.name}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <div>
+      <h3 class="text-xs font-bold tracking-widest uppercase text-accent mb-4">Solusi Jasa</h3>
+      <ul class="space-y-3">
+        {menuLayanan.map(item => (
+          <li>
+            <a href={item.href} class="text-xs sm:text-sm text-text-light/90 hover:text-accent transition-colors font-medium block truncate">
+              {item.name}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="space-y-4">
+      <h3 class="text-xs font-bold tracking-widest uppercase text-accent mb-4">Hubungi Kami</h3>
+      <ul class="space-y-3.5 text-xs sm:text-sm text-text-light/90">
+        <li class="flex items-start gap-3">
+          <MapPin class="h-4 w-4 text-accent shrink-0 mt-0.5" />
+          <span class="leading-relaxed">Jl. Gumayun No. 12, Tegal, Jawa Tengah</span>
+        </li>
+        <li class="flex items-center gap-3">
+          <MessageCircle class="h-4 w-4 text-accent shrink-0" />
+          <a href={waLink} target="_blank" rel="noopener noreferrer" class="hover:text-accent font-bold transition-colors">
+            +62 812-3456-789
+          </a>
+        </li>
+        <li class="flex items-center gap-3">
+          <Mail class="h-4 w-4 text-accent shrink-0" />
+          <a href="mailto:info@bregaselektrik.com" class="hover:text-accent transition-colors">
+            info@bregaselektrik.com
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <p class="text-[11px] font-bold uppercase tracking-wider text-text-light/60">
+      &copy; {currentYear} BREGAS ELEKTRIK. ALL RIGHTS RESERVED.
+    </p>
+    <div class="flex gap-6 text-[11px] font-bold uppercase tracking-wider text-text-light/60">
+      <a href="/kebijakan-privasi" class="hover:text-accent transition-colors">Kebijakan Privasi</a>
+      <a href="/syarat-ketentuan" class="hover:text-accent transition-colors">Syarat & Ketentuan</a>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,103 @@
+---
+// src/components/Testimonials.astro
+import { Star, User } from 'lucide-astro';
+import '../styles/global.css';
+
+const testimonials = [
+  {
+    name: "Budi Santoso",
+    role: "Pemilik Rumah Tinggal",
+    location: "Slawi",
+    rating: 5,
+    text: "Sangat puas dengan kerapian kerja teknisinya. Jalur kabel baru di dalam dinding dipasang lurus, rapi, dan tidak asal tembus. Penjelasan mengenai pembagian group MCB juga sangat detail jadi kami paham kapasitas beban rumah kami sekarang."
+  },
+  {
+    name: "Hendra Wijaya",
+    role: "Owner Toko Sembako Grosir",
+    location: "Brebes",
+    rating: 5,
+    text: "Kemarin ruko sempat overload dan listrik sering ngetrip waktu semua freezer dinyalakan. Tim BREGAS Elektrik langsung datang hari itu juga untuk troubleshooting dan upgrade panel pembagi. Penawaran harga transparan di awal, tidak ada biaya siluman."
+  },
+  {
+    name: "Siti Aminah",
+    role: "Pengelola Kedai Kopi",
+    location: "Kota Tegal",
+    rating: 5,
+    text: "Responsnya cepat sekali waktu dihubungi via WhatsApp. Teknisi datang tepat waktu menggunakan seragam dan APD lengkap, sangat mengutamakan K3. Pengerjaan instalasi lampu etalase dan stop kontak tambahan selesai sesuai estimasi."
+  },
+  {
+    name: "Dedi Kurniawan",
+    role: "Kontraktor Properti",
+    location: "Adiwerna, Tegal",
+    rating: 5,
+    text: "Sudah langganan untuk proyek perumahan klaster kecil. Hasil instalasi selalu patuh standar PUIL dan material yang dipakai benar-benar bersertifikat SNI resmi. Sangat direkomendasikan untuk mitra kerja jangka panjang."
+  },
+  {
+    name: "Fahmi Idris",
+    role: "Supervisor Gudang Logistik",
+    location: "Brebes",
+    rating: 5,
+    text: "Pengerjaan maintenance berkala panel listrik di gudang kami dilakukan dengan sangat profesional. Ada pengecekan suhu kabel dan grounding juga. Dokumentasi laporan hasil inspeksinya rapi dan sangat berguna buat arsip perusahaan."
+  },
+  {
+    name: "Gani Prasetyo",
+    role: "Pemilik Workshop Konveksi",
+    location: "Kota Tegal",
+    rating: 5,
+    text: "Instalasi jalur listrik untuk mesin jahit industri ringan dikerjakan dengan perhitungan beban puncak yang matang. Sejak dikerjakan oleh BREGAS Elektrik, tidak pernah ada kendala listrik mati sebelah atau tegangan turun lagi."
+  }
+];
+---
+
+<section id="testimoni" class="py-24 bg-primary border-b border-white/[0.08] relative overflow-hidden">
+  
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[30rem] h-[30rem] md:w-[55rem] md:h-[55rem] bg-accent/15 rounded-full blur-[100px] md:blur-[140px] pointer-events-none mix-blend-screen"></div>
+  <div class="absolute top-1/3 left-1/2 -translate-x-1/2 w-[20rem] h-[20rem] md:w-[40rem] md:h-[40rem] bg-white/[0.03] rounded-full blur-[80px] md:blur-[120px] pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    
+    <div class="text-center max-w-3xl mx-auto mb-20">
+      <h2 class="text-xs font-bold tracking-wider uppercase text-accent mb-2">Bukti Nyata Kualitas</h2>
+      <p class="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-white">
+        Apa Kata Mereka Tentang Kami?
+      </p>
+      <div class="w-16 h-1 bg-accent mx-auto mt-5 rounded-full"></div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {testimonials.map((item) => (
+        
+        <div 
+          class="flex flex-col justify-between p-8 bg-white/[0.03] backdrop-blur-lg border border-white/10 rounded-2xl shadow-2xl hover:bg-white/[0.06] hover:border-white/20 transition-all duration-300 transform hover:-translate-y-1"
+        >
+          <div class="space-y-4">
+            <div class="flex items-center gap-1">
+              {[...Array(item.rating)].map(() => (
+                <Star class="w-4 h-4 fill-accent text-accent" />
+              ))}
+            </div>
+            
+            <p class="text-white/80 text-sm leading-relaxed text-left font-normal italic">
+              "{item.text}"
+            </p>
+          </div>
+
+          <div class="flex items-center gap-3 pt-6 mt-6 border-t border-white/10">
+            <div class="p-2.5 bg-white/5 border border-white/10 text-accent rounded-full shrink-0">
+              <User class="w-4 h-4" />
+            </div>
+            <div>
+              <h4 class="font-bold text-white text-sm tracking-tight">
+                {item.name}
+              </h4>
+              <p class="text-xs text-white/60 font-medium mt-0.5">
+                {item.role} &bull; {item.location}
+              </p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>

@@ -1,0 +1,151 @@
+---
+// src/components/Workflow.astro
+import { MessageSquare, ClipboardCheck, Eye, FileText, Wrench, ShieldCheck } from 'lucide-astro';
+import '../styles/global.css';
+
+const langkahs = [
+  { id: "flow-1", icon: MessageSquare, title: "Hubungi WhatsApp", desc: "Sampaikan kendala atau kebutuhan instalasi Anda langsung ke admin kami." },
+  { id: "flow-2", icon: ClipboardCheck, title: "Konsultasi Kebutuhan", desc: "Diskusi teknis awal mengenai spesifikasi material dan scope pengerjaan." },
+  { id: "flow-3", icon: Eye, title: "Survei Lokasi", desc: "Tim teknisi datang ke lokasi untuk cek lapangan jika diperlukan (skala besar)." },
+  { id: "flow-4", icon: FileText, title: "Penawaran Harga", desc: "Kami kirimkan estimasi Rencana Anggaran Biaya (RAB) yang transparan." },
+  { id: "flow-5", icon: Wrench, title: "Proses Pengerjaan", desc: "Teknisi melakukan instalasi dengan APD lengkap sesuai standar K3 & PUIL." },
+  { id: "flow-6", icon: ShieldCheck, title: "Serah Terima", desc: "Pengecekan bersama, pengujian arus, dan penyerahan garansi hasil kerja." }
+];
+---
+
+<section id="alur-kerja" class="py-24 bg-primary border-b border-white/[0.08] overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center max-w-3xl mx-auto mb-20">
+      <h2 class="text-xs font-bold tracking-wider uppercase text-accent mb-2">Sistematis & Transparan</h2>
+      <p class="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-white">
+        Alur Pengerjaan Kami
+      </p>
+      <div class="w-16 h-1 bg-accent mx-auto mt-4 rounded-full"></div>
+    </div>
+
+    <div class="relative w-full">
+      
+      <div class="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-white/20 -translate-x-1/2 z-0"></div>
+
+      <div class="space-y-10 md:space-y-14 relative z-10">
+        {langkahs.map((step, index) => {
+          const IconComponent = step.icon;
+          const isEven = index % 2 === 0;
+
+          return (
+            <div class={`flex flex-col md:flex-row items-start md:items-center w-full ${isEven ? 'md:flex-row-reverse' : ''}`}>
+              
+              <div class="w-full md:w-1/2 hidden md:block"></div>
+
+              <button
+                data-target={step.id}
+                class="workflow-btn absolute left-4 md:left-1/2 w-9 h-9 rounded-full border-2 bg-primary border-white/30 text-white flex items-center justify-center -translate-x-1/2 z-20 shadow-lg transition-all duration-300 hover:border-accent cursor-pointer focus:outline-none"
+              >
+                <IconComponent class="w-4 h-4 stroke-[2]" />
+              </button>
+
+              <div class={`w-full md:w-1/2 pl-12 md:pl-0 ${isEven ? 'md:pr-12 md:text-right' : 'md:pl-12'}`}>
+                <div class="workflow-text-block py-2">
+                  
+                  <button
+                    data-target={step.id}
+                    class="workflow-title-trigger text-left md:inline-block focus:outline-none cursor-pointer group"
+                  >
+                    <div class={`flex items-center gap-2 ${isEven ? 'md:flex-row-reverse' : ''}`}>
+                      <span class="workflow-num text-xs font-black text-white/40 group-hover:text-accent transition-colors">
+                        0{index + 1}.
+                      </span>
+                      <h4 class="font-bold text-white/60 group-hover:text-white text-base md:text-xl tracking-tight transition-colors workflow-h4">
+                        {step.title}
+                      </h4>
+                    </div>
+                  </button>
+
+                  <div 
+                    id={`content-${step.id}`} 
+                    class="workflow-desc-panel max-h-0 opacity-0 overflow-hidden transition-all duration-300 ease-in-out"
+                  >
+                    <p class="text-sm text-white/90 leading-relaxed mt-2 max-w-xl md:inline-block font-normal">
+                      {step.desc}
+                    </p>
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+          );
+        })}
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const triggers = document.querySelectorAll('.workflow-btn, .workflow-title-trigger');
+
+    triggers.forEach(trigger => {
+      trigger.addEventListener('click', () => {
+        const targetId = trigger.getAttribute('data-target');
+        if (!targetId) return;
+
+        const currentContent = document.getElementById(`content-${targetId}`);
+        const isOpen = currentContent && currentContent.classList.contains('max-h-24');
+
+        // Reset semua komponen alur kerja ke state redup (default awal)
+        document.querySelectorAll('.workflow-desc-panel').forEach(panel => {
+          panel.classList.remove('max-h-24', 'opacity-100');
+          panel.classList.add('max-h-0', 'opacity-0');
+        });
+
+        document.querySelectorAll('.workflow-btn').forEach(btn => {
+          btn.classList.remove('border-accent', 'bg-accent', 'text-primary');
+          btn.classList.add('bg-primary', 'border-white/30', 'text-white');
+        });
+
+        document.querySelectorAll('.workflow-h4').forEach(h4 => {
+          h4.classList.remove('text-accent');
+          h4.classList.add('text-white/60');
+        });
+
+        document.querySelectorAll('.workflow-num').forEach(num => {
+          num.classList.remove('text-accent');
+          num.classList.add('text-white/40');
+        });
+
+        // JIKA SEBELUMNYA BELUM TERBUKA -> BERI EFEK AKTIF NYALA KUNING ACCENT PADA JUDUL/NOMOR & DESKRIPSI PUTIH
+        if (!isOpen) {
+          // 1. Munculkan teks deskripsi dengan warna putih
+          if (currentContent) {
+            currentContent.classList.remove('max-h-0', 'opacity-0');
+            currentContent.classList.add('max-h-24', 'opacity-100');
+          }
+
+          // 2. Aktifkan tombol lingkaran & teks judul/nomor target menjadi warna aksen kuning agar menonjol di atas bg-biru
+          const activeButtons = document.querySelectorAll(`.workflow-btn[data-target="${targetId}"]`);
+          const activeContainers = document.querySelectorAll(`.workflow-title-trigger[data-target="${targetId}"]`);
+
+          activeButtons.forEach(btn => {
+            btn.classList.remove('bg-primary', 'border-white/30', 'text-white');
+            btn.classList.add('border-accent', 'bg-accent', 'text-primary'); // Ikon tengah ikut berubah
+          });
+
+          activeContainers.forEach(container => {
+            const h4 = container.querySelector('.workflow-h4');
+            const num = container.querySelector('.workflow-num');
+            
+            h4?.classList.remove('text-white/60');
+            h4?.classList.add('text-accent'); // Judul menjadi Kuning Accent kontras
+            
+            num?.classList.remove('text-white/40');
+            num?.classList.add('text-accent'); // Nomor menjadi Kuning Accent kontras
+          });
+        }
+      });
+    });
+  });
+</script>

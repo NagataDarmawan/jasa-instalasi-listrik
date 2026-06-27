@@ -1,0 +1,200 @@
+---
+// src/components/formPemesanan.astro
+import { User, Phone, MapPin, Wrench, Calendar, FileText, Send } from 'lucide-astro';
+import '../styles/global.css';
+
+// Daftar opsi layanan yang disamakan persis nilainya dengan slug dari katalog
+const serviceOptions = [
+  { slug: "instalasi-listrik-rumah", name: "Instalasi Listrik Rumah" },
+  { slug: "instalasi-listrik-ruko", name: "Instalasi Listrik Ruko" },
+  { slug: "instalasi-kantor", name: "Instalasi Kantor" },
+  { slug: "instalasi-gudang", name: "Instalasi Gudang" },
+  { slug: "instalasi-pabrik-ringan", name: "Instalasi Pabrik Ringan" },
+  { slug: "penambahan-daya", name: "Penambahan Daya" },
+  { slug: "pemasangan-mcb", name: "Pemasangan MCB" },
+  { slug: "instalasi-panel-listrik", name: "Instalasi Panel Listrik" },
+  { slug: "perbaikan-instalasi", name: "Perbaikan Instalasi" },
+  { slug: "maintenance-listrik-berkala", name: "Maintenance Listrik Berkala" }
+];
+---
+
+<div class="w-full bg-surface p-6 sm:p-8 rounded-2xl">
+  <div class="mb-6 space-y-2">
+    <h3 class="text-xl font-black text-primary tracking-tight">Formulir Pemesanan Jasa</h3>
+    <p class="text-xs text-text-light leading-relaxed">
+      Lengkapi data di bawah ini. Tim teknis BREGAS Elektrik akan segera menghubungi Anda untuk konfirmasi jadwal survei lapangan.
+    </p>
+  </div>
+
+  <form id="order-form" class="space-y-4">
+    
+    <div class="space-y-1.5">
+      <label for="client-name" class="text-xs font-bold text-primary uppercase tracking-wider block">Nama Lengkap</label>
+      <div class="relative">
+        <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-text-light">
+          <User class="w-4 h-4 stroke-[2]" />
+        </div>
+        <input 
+          type="text" 
+          id="client-name" 
+          name="name" 
+          required 
+          placeholder="Masukkan nama Anda"
+          class="w-full pl-10 pr-4 py-3 bg-background border border-border-custom/80 rounded-xl text-sm focus:outline-hidden focus:border-accent focus:ring-1 focus:ring-accent transition-all placeholder:text-text-light/50 font-medium"
+        />
+      </div>
+    </div>
+
+    <div class="space-y-1.5">
+      <label for="client-phone" class="text-xs font-bold text-primary uppercase tracking-wider block">Nomor HP / WhatsApp</label>
+      <div class="relative">
+        <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-text-light">
+          <Phone class="w-4 h-4 stroke-[2]" />
+        </div>
+        <input 
+          type="tel" 
+          id="client-phone" 
+          name="phone" 
+          required 
+          placeholder="Contoh: 08123456789"
+          class="w-full pl-10 pr-4 py-3 bg-background border border-border-custom/80 rounded-xl text-sm focus:outline-hidden focus:border-accent focus:ring-1 focus:ring-accent transition-all placeholder:text-text-light/50 font-medium"
+        />
+      </div>
+    </div>
+
+    <div class="space-y-1.5">
+      <label for="client-address" class="text-xs font-bold text-primary uppercase tracking-wider block">Alamat Lokasi Proyek</label>
+      <div class="relative">
+        <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-text-light">
+          <MapPin class="w-4 h-4 stroke-[2]" />
+        </div>
+        <input 
+          type="text" 
+          id="client-address" 
+          name="address" 
+          required 
+          placeholder="Nama jalan, nomor rumah, kota/kecamatan"
+          class="w-full pl-10 pr-4 py-3 bg-background border border-border-custom/80 rounded-xl text-sm focus:outline-hidden focus:border-accent focus:ring-1 focus:ring-accent transition-all placeholder:text-text-light/50 font-medium"
+        />
+      </div>
+    </div>
+
+    <div class="space-y-1.5">
+      <label for="client-service" class="text-xs font-bold text-primary uppercase tracking-wider block">Jenis Layanan</label>
+      <div class="relative">
+        <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-text-light">
+          <Wrench class="w-4 h-4 stroke-[2]" />
+        </div>
+        <select 
+          id="client-service" 
+          name="service" 
+          required 
+          class="w-full pl-10 pr-4 py-3 bg-background border border-border-custom/80 rounded-xl text-sm focus:outline-hidden focus:border-accent focus:ring-1 focus:ring-accent transition-all font-medium text-primary appearance-none cursor-pointer"
+        >
+          <option value="" disabled selected>Pilih jenis layanan teknis</option>
+          {serviceOptions.map((option) => (
+            <option value={option.slug}>{option.name}</option>
+          ))}
+        </select>
+        <div class="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none text-text-light">
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="space-y-1.5">
+      <label for="client-schedule" class="text-xs font-bold text-primary uppercase tracking-wider block">Jadwal yang Diinginkan</label>
+      <div class="relative">
+        <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-text-light">
+          <Calendar class="w-4 h-4 stroke-[2]" />
+        </div>
+        <input 
+          type="date" 
+          id="client-schedule" 
+          name="schedule" 
+          required 
+          class="w-full pl-10 pr-4 py-3 bg-background border border-border-custom/80 rounded-xl text-sm focus:outline-hidden focus:border-accent focus:ring-1 focus:ring-accent transition-all font-medium text-primary"
+        />
+      </div>
+    </div>
+
+    <div class="space-y-1.5">
+      <label for="client-notes" class="text-xs font-bold text-primary uppercase tracking-wider block">Catatan Tambahan (Opsional)</label>
+      <div class="relative">
+        <div class="absolute inset-y-0 left-0 pl-3.5 pt-3.5 flex items-start pointer-events-none text-text-light">
+          <FileText class="w-4 h-4 stroke-[2]" />
+        </div>
+        <textarea 
+          id="client-notes" 
+          name="notes" 
+          rows="3" 
+          placeholder="Jelaskan detail kendala atau spesifikasi khusus jika ada..."
+          class="w-full pl-10 pr-4 py-3 bg-background border border-border-custom/80 rounded-xl text-sm focus:outline-hidden focus:border-accent focus:ring-1 focus:ring-accent transition-all placeholder:text-text-light/50 font-medium resize-none"
+        ></textarea>
+      </div>
+    </div>
+
+    <div class="pt-2">
+      <button 
+        type="submit" 
+        class="inline-flex items-center justify-center gap-2 w-full bg-primary text-white hover:bg-primary/95 py-3.5 px-6 rounded-xl font-bold transition-all duration-200 shadow-md hover:shadow-lg transform active:scale-[0.99] cursor-pointer"
+      >
+        <Send class="w-4 h-4 text-accent stroke-[2.5]" />
+        Kirim Pesanan Jasa
+      </button>
+    </div>
+
+  </form>
+</div>
+
+<script>
+  // 1. Logika untuk Auto-Select Berdasarkan URL Parameter (?slug=...)
+  function autoSelectService() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const slug = urlParams.get('slug');
+    
+    if (slug) {
+      const selectElement = document.getElementById('client-service') as HTMLSelectElement;
+      if (selectElement) {
+        // Cek apakah option dengan value=slug tersebut memang eksis di dalam element select
+        const hasOption = Array.from(selectElement.options).some(option => option.value === slug);
+        if (hasOption) {
+          selectElement.value = slug;
+        }
+      }
+    }
+  }
+
+  // Jalankan fungsi autoSelect saat komponen terpasang di DOM browser
+  document.addEventListener('DOMContentLoaded', autoSelectService);
+
+  // 2. Integrasi Pengiriman Form (Bisa diarahkan ke WhatsApp atau API endpoint)
+  const form = document.getElementById('order-form');
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    const formData = new FormData(form as HTMLFormElement);
+    const name = formData.get('name');
+    const phone = formData.get('phone');
+    const address = formData.get('address');
+    const serviceSelect = document.getElementById('client-service') as HTMLSelectElement;
+    const serviceName = serviceSelect.options[serviceSelect.selectedIndex].text;
+    const schedule = formData.get('schedule');
+    const notes = formData.get('notes') || 'Tidak ada catatan tambahan.';
+
+    // Menyusun teks template untuk dikirim rapi ke sistem admin WhatsApp
+    const waText = `*FORM PEMESANAN JASA - BREGAS ELEKTRIK*\n\n` +
+                   `• *Nama:* ${name}\n` +
+                   `• *No. HP:* ${phone}\n` +
+                   `• *Alamat:* ${address}\n` +
+                   `• *Layanan:* ${serviceName}\n` +
+                   `• *Jadwal:* ${schedule}\n` +
+                   `• *Catatan:* ${notes}`;
+
+    const waNumber = "628123456789"; // Ganti dengan nomor WhatsApp Admin Anda
+    const waUrl = `https://wa.me/${waNumber}?text=${encodeURIComponent(waText)}`;
+    
+    // Redirect langsung ke WhatsApp chat sistem operasional
+    window.open(waUrl, '_blank');
+  });
+</script>

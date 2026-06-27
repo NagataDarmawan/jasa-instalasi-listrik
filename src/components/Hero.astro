@@ -1,0 +1,63 @@
+---
+// src/components/Hero.astro
+import { PhoneCall, FileText, Sparkles } from 'lucide-astro';
+
+const waNumber = "628123456789"; 
+
+const msgKonsultasi = encodeURIComponent("Halo Mas, mau tanya-tanya dulu bisa? Saya ada kebutuhan untuk instalasi listrik.");
+const msgPenawaran = encodeURIComponent("Halo, bisa minta estimasi / penawaran harga untuk pengerjaan listrik?");
+
+const linkKonsultasi = `https://wa.me/${waNumber}?text=${msgKonsultasi}`;
+const linkPenawaran = `https://wa.me/${waNumber}?text=${msgPenawaran}`;
+
+const bgImage = "https://cnc-magazine.oramiland.com/parenting/images/instalasi-listrik.width-800.format-webp.webp";
+---
+
+<!-- UPDATE: Mengganti min-h-[70vh] menjadi min-h-screen dan memastikan w-full agar full frame -->
+<section 
+  class="relative w-full min-h-screen flex items-center bg-cover bg-center bg-no-repeat text-white pt-20 border-b border-border-custom/20"
+  style={`background-image: url('${bgImage}');`}
+>
+  <!-- Overlay Hitam Transparan -->
+  <div class="absolute inset-0 bg-black/55 pointer-events-none"></div>
+
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10 w-full py-12 md:py-20">
+    <div class="max-w-2xl text-left">
+
+      <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight mb-4 drop-shadow-md">
+        Terima Pasang & Perbaikan <span class="text-accent">Instalasi Listrik</span> Rumah, Ruko, hingga Pabrik
+      </h1>
+
+      <p class="text-sm sm:text-base md:text-lg text-slate-200 leading-relaxed mb-8 max-w-xl drop-shadow-sm">
+        Nggak perlu pusing soal korsleting turun-naik atau pasang jalur kabel baru. Semua ditangani langsung oleh teknisi berpengalaman. Siap survei ke lokasi Anda.
+      </p>
+
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-start gap-4">
+        
+        <!-- Tombol Utama -->
+        <a 
+          href={linkKonsultasi}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center gap-2 bg-accent hover:bg-accent/80 text-primary font-bold py-3 px-6 rounded-xl shadow-md transition-all duration-200 group transform hover:-translate-y-0.5 text-sm"
+        >
+          <PhoneCall class="w-4 h-4 transition-transform group-hover:scale-110" />
+          Tanya / Konsultasi Dulu
+        </a>
+
+        <!-- Tombol Kedua -->
+        <a 
+          href={linkPenawaran}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center gap-2 bg-black/40 hover:bg-black/60 text-white font-bold py-3 px-6 rounded-xl border border-white/20 backdrop-blur-xs transition-all duration-200 text-sm group"
+        >
+          <FileText class="w-4 h-4 text-slate-300 group-hover:text-white transition-colors" />
+          Minta Estimasi Biaya
+        </a>
+        
+      </div>
+
+    </div>
+  </div>
+</section>

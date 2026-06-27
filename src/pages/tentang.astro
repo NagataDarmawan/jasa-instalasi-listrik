@@ -1,0 +1,148 @@
+---
+// src/components/About.astro
+import { ShieldCheck, HardHat, MapPin, Briefcase, Target, Eye, CheckCircle2 } from 'lucide-astro';
+import '../styles/global.css';
+
+const areaLayanan = [
+  "Kota & Kabupaten Tegal",
+  "Slawi & Sekitarnya",
+  "Kabupaten Brebes"
+];
+
+const misiPoin = [
+  "Menyediakan tenaga teknis yang tersertifikasi, berpengalaman, dan patuh pada regulasi PUIL.",
+  "Menggunakan material kelistrikan berkualitas tinggi yang telah lolos uji standar SNI.",
+  "Memberikan transparansi rencana anggaran biaya (RAB) tanpa ada biaya tersembunyi.",
+  "Menjamin ketepatan waktu pengerjaan proyek sesuai dengan kesepakatan jadwal kontrak.",
+  "Memberikan layanan garansi pasca-instalasi demi menjamin ketenangan pikiran pelanggan."
+];
+---
+
+<section id="tentang" class="py-24 bg-background border-b border-border-custom/20">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="mb-16">
+      <h2 class="text-xs font-bold tracking-wider uppercase text-accent mb-2">Profil Perusahaan</h2>
+      <p class="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-primary max-w-3xl">
+        Mitra Terpercaya untuk Solusi Instalasi Listrik Anda
+      </p>
+      <div class="w-16 h-1 bg-accent mt-4"></div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-20">
+      
+      <div class="lg:col-span-7 space-y-6">
+        <p class="text-text-main text-base sm:text-lg leading-relaxed text-left">
+          <strong class="text-primary font-bold">BREGAS ELEKTRIK</strong> merupakan penyedia jasa rekayasa teknis dan kontraktor kelistrikan profesional yang bergerak dalam ruang lingkup perencanaan makro, pemasangan baru, perbaikan darurat, hingga pemeliharaan sistem mekanikal-elektrikal. Kami hadir sebagai solusi responsif atas tingginya kebutuhan akan infrastruktur daya yang tangguh, efisien, dan bebas gangguan.
+        </p>
+        <p class="text-text-main text-sm sm:text-base leading-relaxed text-left opacity-90">
+          Didukung oleh komparasi jam terbang tinggi dan tim teknisi lapangan yang memegang sertifikasi kompetensi resmi, kami tidak sekadar menyambung kabel, melainkan merancang tata letak distribusi beban yang seimbang guna menekan potensi kerugian akibat arus bocor. Kami percaya bahwa fondasi utama dari bangunan yang produktif bermula dari sistem kelistrikan yang sehat dan terkelola dengan baik.
+        </p>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+          <div class="p-6 bg-surface border border-border-custom/80 rounded-xl flex items-center gap-4 shadow-xs">
+            <div class="p-3 bg-primary/5 text-primary rounded-lg shrink-0">
+              <Briefcase class="w-5 h-5" />
+            </div>
+            <div>
+              <span class="block text-xl font-extrabold text-primary leading-tight">5+ Tahun</span>
+              <span class="text-xs text-text-light font-medium uppercase tracking-wider">Pengalaman Lapangan</span>
+            </div>
+          </div>
+          
+          <div class="p-6 bg-surface border border-border-custom/80 rounded-xl flex items-center gap-4 shadow-xs">
+            <div class="p-3 bg-primary/5 text-primary rounded-lg shrink-0">
+              <ShieldCheck class="w-5 h-5" />
+            </div>
+            <div>
+              <span class="block text-xl font-extrabold text-primary leading-tight">100%</span>
+              <span class="text-xs text-text-light font-medium uppercase tracking-wider">Proyek Aman & Sukses</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-5 bg-primary p-8 sm:p-10 rounded-2xl shadow-sm border border-border-custom/30 space-y-8">
+        
+        <div class="flex items-start gap-4">
+          <div class="p-3 bg-white/10 text-accent rounded-xl mt-1 shrink-0">
+            <HardHat class="w-5 h-5 stroke-[2]" />
+          </div>
+          <div>
+            <h4 class="font-bold text-white text-base md:text-lg mb-1.5 tracking-tight">Komitmen Keselamatan Kerja (K3)</h4>
+            <p class="text-sm text-white/80 leading-relaxed text-left">
+              Bagi kami, keselamatan adalah segalanya. Setiap teknisi kami wajib mematuhi standar operating procedure (SOP) keselamatan ketat, menggunakan APD lengkap, dan menerapkan material bersertifikat SNI serta regulasi PUIL demi mencegah risiko korsleting jangka panjang.
+            </p>
+          </div>
+        </div>
+
+        <div class="h-px bg-white/10"></div>
+
+        <div class="flex items-start gap-4">
+          <div class="p-3 bg-white/10 text-accent rounded-xl mt-1 shrink-0">
+            <MapPin class="w-5 h-5 stroke-[2]" />
+          </div>
+          <div class="w-full">
+            <h4 class="font-bold text-white text-base md:text-lg mb-3 tracking-tight">Area Cakupan Layanan</h4>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {areaLayanan.map(area => (
+                <div class="flex items-center gap-2.5 text-sm text-white/90 font-medium">
+                  <div class="w-1.5 h-1.5 bg-accent rounded-full shrink-0"></div>
+                  {area}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      
+      <div class="bg-surface border border-border-custom/80 p-8 rounded-2xl shadow-xs">
+        <div class="flex items-center gap-3 mb-6 border-b border-border-custom/40 pb-4">
+          <div class="p-2.5 bg-primary/5 text-primary rounded-lg">
+            <Target class="w-5 h-5" />
+          </div>
+          <h3 class="font-extrabold text-primary text-lg sm:text-xl tracking-tight">Visi Utama Kami</h3>
+        </div>
+        
+        <div class="space-y-4">
+          <p class="text-sm sm:text-base text-primary leading-relaxed font-bold border-l-4 border-accent pl-3.5 mb-6">
+            Menjadi barometer penyedia jasa instalasi kelistrikan profesional nomor satu yang mengintegrasikan aspek keselamatan kerja, inovasi material, dan kepuasan pelanggan secara konsisten.
+          </p>
+          <div class="space-y-3 text-sm text-text-main">
+            <div class="flex items-start gap-3"><CheckCircle2 class="w-4 h-4 text-accent shrink-0 mt-1" /> <span class="leading-relaxed">Mewujudkan zero-accident di setiap proyek kelistrikan komersial maupun residensial.</span></div>
+            <div class="flex items-start gap-3"><CheckCircle2 class="w-4 h-4 text-accent shrink-0 mt-1" /> <span class="leading-relaxed">Membangun reputasi sebagai mitra teknis yang paling transparan dalam penyusunan anggaran.</span></div>
+            <div class="flex items-start gap-3"><CheckCircle2 class="w-4 h-4 text-accent shrink-0 mt-1" /> <span class="leading-relaxed">Mengembangkan jaringan layanan teknisi lokal yang responsif di wilayah Pantura Jawa Tengah.</span></div>
+            <div class="flex items-start gap-3"><CheckCircle2 class="w-4 h-4 text-accent shrink-0 mt-1" /> <span class="leading-relaxed">Menjadi pionir penerapan teknologi smart-home system yang hemat energi.</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-surface border border-border-custom/80 p-8 rounded-2xl shadow-xs">
+        <div class="flex items-center gap-3 mb-6 border-b border-border-custom/40 pb-4">
+          <div class="p-2.5 bg-primary/5 text-primary rounded-lg">
+            <Eye class="w-5 h-5" />
+          </div>
+          <h3 class="font-extrabold text-primary text-lg sm:text-xl tracking-tight">Misi Kerja Kami</h3>
+        </div>
+        
+        <div class="mt-4">
+          <ul class="space-y-4 text-sm text-text-main">
+            {misiPoin.map((poin, index) => (
+              <li class="flex items-start gap-3.5 leading-relaxed">
+                <span class="flex items-center justify-center w-6 h-6 bg-primary/5 text-primary text-xs font-bold rounded-lg shrink-0 mt-0.5">
+                  0{index + 1}
+                </span>
+                <span class="text-text-main/90 font-medium">{poin}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+      
+    </div>
+
+  </div>
+</section>

@@ -1,0 +1,40 @@
+---
+// src/pages/index.astro
+
+// 1. Import Base Layout global
+import Layout from '../layouts/layout.astro'; 
+
+// 2. Import komponen seksi halaman utama dari folder COMPONENTS (Sudah Diperbaiki)
+import Hero from '../components/Hero.astro';
+import Layanan from '../pages/layanan.astro';
+import AlurPengerjaan from '../pages/alurPengerjaan.astro';
+import Tentang from '../pages/tentang.astro';
+import Testimoni from '../pages/tesimoni.astro';
+import FAQ from '../pages/faq.astro';
+import Kontak from '../pages/kontak.astro'
+import Portofolio from './portofolio.astro';
+---
+
+<Layout 
+  title="BREGAS Elektrik - Jasa Instalasi Listrik Profesional & Bersertifikat"
+  description="Kontraktor jasa instalasi listrik rumah, ruko, kantor, dan industri ringan terpercaya dengan standar keselamatan kerja tinggi."
+>
+  
+  {/* Mengurutkan seksi halaman berdasarkan alur psikologi konsumen */}
+  <Hero />
+  
+  <Tentang />
+
+  <AlurPengerjaan />
+
+  <Layanan />
+
+  <Portofolio />
+
+  <Testimoni />
+
+  <FAQ />
+
+  <Kontak />
+  
+</Layout>

@@ -1,0 +1,38 @@
+---
+// src/components/Card.astro
+interface Props {
+  title: string;
+  description?: string;
+  className?: string;
+  hoverEffect?: boolean;
+}
+
+const { 
+  title, 
+  description, 
+  className = "", 
+  hoverEffect = true 
+} = Astro.props;
+---
+
+<div 
+  class={`bg-primary border border-border-custom/50 p-6 rounded-lg shadow-xs transition-all duration-300 ${
+    hoverEffect ? 'hover:border-accent/40 hover:shadow-md hover:-translate-y-1' : ''
+  } ${className}`}
+>
+  {Astro.slots.has('icon') && (
+    <div class="p-2.5 bg-surface/10 text-accent rounded-md h-fit w-fit mb-4">
+      <slot name="icon" />
+    </div>
+  )}
+
+  <h4 class="font-bold text-white text-base sm:text-lg mb-2">{title}</h4>
+  
+  {description ? (
+    <p class="text-xs sm:text-sm text-text-main leading-relaxed">{description}</p>
+  ) : (
+    <div class="text-xs sm:text-sm text-text-main leading-relaxed">
+      <slot />
+    </div>
+  )}
+</div>
