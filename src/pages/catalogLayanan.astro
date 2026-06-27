@@ -1,7 +1,7 @@
 ---
 import Footer from '../components/Footer.astro';
 import FormPemesanan from '../components/formPemesanan.astro'; // Mengimpor form Anda sebagai pop-up
-import { ImageOff, ArrowRight, ArrowLeft } from 'lucide-astro';
+import { ImageOff, ArrowLeft } from 'lucide-astro';
 import '../styles/global.css';
 
 const layananList = [
@@ -55,6 +55,7 @@ const layananList = [
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="/logo-bregas-putih.ico" />
   <title>Katalog Layanan Kelistrikan</title>
 </head>
 <body class="bg-background text-text-main flex flex-col min-h-screen relative">
@@ -105,9 +106,9 @@ const layananList = [
             <button 
               data-open-modal
               data-slug={layanan.id}
-              class="flex items-center justify-center gap-2 w-full text-center bg-accent text-surface font-bold py-2.5 px-4 rounded hover:opacity-90 transition-all duration-200 border-b-4 border-primary text-sm cursor-pointer"
+              class="flex items-center justify-center w-full text-center bg-accent text-primary font-bold py-2.5 px-4 rounded hover:opacity-90 transition-all duration-200 text-sm cursor-pointer"
             >
-              Pesan Jasa Sekarang <ArrowRight class="w-4 h-4" />
+              Pesan Jasa Sekarang
             </button>
           </div>
 
@@ -137,7 +138,6 @@ const layananList = [
     const closeBtn = document.getElementById('close-modal-btn');
     const closeBg = document.getElementById('close-modal-bg');
 
-    // Catatan: Pastikan di dalam `<FormPemesanan />` Anda memiliki ID elemen berikut agar sinkron otomatis
     const selectElement = document.getElementById('client-service') as HTMLSelectElement;
     const hiddenInputElement = document.getElementById('hidden-client-service') as HTMLInputElement;
 
